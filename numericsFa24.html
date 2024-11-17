@@ -1,0 +1,518 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Numerical Methods with Octave</title>
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<link href="robotics/f23/undergradStyle.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    
+    
+<h1 class="display-1 text-center" style="font-size: 75px;"> Numerical Methods with Octave</h1>
+
+<!--	See help here: https://getbootstrap.com/docs/4.0/components/navbar/-->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top sticky-top" style="background-color: #e7dc9f;">
+<!--    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top sticky-top">-->
+        <a class="navbar-brand" href="#"></a>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/University_of_Illinois_at_Chicago_circle_logo.svg/1200px-University_of_Illinois_at_Chicago_circle_logo.svg.png" width="30" height="30" class="d-inline-block align-top" alt="UIC Picture">
+      <a class="navbar-brand" href="#"> Top/About</a>
+        
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+			<!--   All Material  !-->
+      <li class="nav-item active">
+        <a class="nav-link" href="#FullTable">All Material<span class="sr-only">(current)</span></a>
+      </li>
+    <!--   All Material end  !-->
+		<!--   download/links starts  !-->
+        <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" href="#" id="NavbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Downloads/Links</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="numericsFa24/Octave.zip"><b>All Octave code</b></a>
+              <a class="dropdown-item" href="numericsFa24/Lectures.zip"><b>All Lectures</b></a>
+			  <a class="dropdown-item" href="https://www.youtube.com/playlist?list=PLc7bpbeTIk77CiKSgfOpuBp16FE4XBXRz"><b>YouTube Playlist</b></a>
+<!--		  <a class="dropdown-item" href="https://pab47.github.io/robotics_archive.html"><b>Archived pages</b></a>-->
+        </div>
+      </li>
+			<!--   download/links ends  !-->
+				<!--   other course  !-->
+		 <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" href="#" id="NavbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All courses</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="http://tiny.cc/legged"><b>Legged Robotics</b></a>
+              <a class="dropdown-item" href="http://tiny.cc/robotics"><b>Robotics MATLAB</b></a> 
+              <a class="dropdown-item" href="http://tiny.cc/roboticspy"><b>Robotics Python</b></a>
+			<a class="dropdown-item" href="http://tiny.cc/robotics23"><b>Robotics Coppelia+Py</b></a>
+			<a class="dropdown-item" href="http://tiny.cc/robotics24"><b>Robotics 2D</b></a>
+              <a class="dropdown-item" href="http://tiny.cc/mujoco"><b>MuJoCo C</b></a>
+			  <a class="dropdown-item" href="http://tiny.cc/mujocopy"><b>MuJoCo Python</b></a>
+			<a class="dropdown-item" href="http://tiny.cc/mechatronix"><b>Mechatronics</b></a>
+        </div>
+      </li>
+		<!--   other course ends  !-->
+		<!--   My webpage starts  !-->
+		<li class="nav-item active">
+        <a class="nav-link" href="https://pab47.github.io">Pranav Bhounsule (homepage)</a>
+      </li>
+		<!--   My webpage ends  !-->
+    </ul>
+  </div>
+</nav>
+    
+<br><br>
+    <div id ="header" align="center" class="col-xl-12">
+        
+<p><b> <b>About:</b> This course introduces numerical methods (applied math) to non Computer Engineering / non Applied Math majors. This course covers taylor series, numerical differentiation, integration, root finding, linear algebraic equations, curve fitting, ordinary differential equations, and partial differential equations. The focus is on application of tools rather than theory. These tools are illustrated using Octave (a free software which has a workflow similar to MATLAB). 
+	</b></p> 
+	 </div>
+	
+		<!--- All material -->
+  
+    
+    <div align="center" class="col-xl-12" id="main">
+    <table style="width:75%" border="3">
+        <tr>
+            <!-- Adding the header colums of content materials and videos -->
+			<th style="text-align: center"><big><big>#</big></big></th>
+            <th style="text-align: center"><big><big>Topic</big></big></th>
+            <th style="text-align: center"><big><big>Youtube</big></big></th>
+            <th style="text-align: center"><big><big>Notes</big></big></th>
+            <th style="text-align: center"><big><big>Code</big></big></th>
+        </tr>
+        
+<!--Contents from MATLAB start here  -->
+		
+	<tr style="background-color: #f0f0f9">
+    <td> Lec0</td>
+    <td> Syllabus</td>
+    <td align="center"> <a href="https://youtu.be/ipXkyo-XWwY">Video</a></td>
+    <td align="center">None</td>
+    <td align="center">None</td>
+</tr>
+ 
+<tr>
+    <td> Lec01</td>
+    <td> Octave Basics</td>
+    <td align="center"> <a href="https://youtu.be/ztwthh3YGcA">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec01_Octave_Basics">PDF</a></td>
+    <td align="center"> <a href="numericsFa24/Octave/Lec01_Intro_Octave.zip">Code</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec02</td>
+    <td> Taylor series</td>
+    <td align="center"> <a href="https://youtu.be/gI7X5Dxu40c">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec02_Taylor_Series.pdf">PDF</a></td>
+    <td align="center"> <a href="numericsFa24/Octave/Lec02_Taylor_Series.zip">Code</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec03a</td>
+    <td> Finite Difference</td>
+    <td align="center"> <a href="https://youtu.be/gxIEW20D_Tk">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec03a_Finite_Difference.pdf">PDF</a></td>
+    <td align="center"> <a href="numericsFa24/Octave/Lec03_Finite_Difference.zip">Code</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec03b</td>
+    <td> Derivatives by curve fitting / Numerical Partial derivatives</td>
+    <td align="center"> <a href="https://youtu.be/JSvhwDliru0">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec03b_Polynomial_PartialDerivatives.pdf">PDF</a></td>
+    <td align="center">None</td>
+</tr>
+ 
+<tr>
+    <td> Lec04a</td>
+    <td> Introduction to root finding</td>
+    <td align="center"> <a href="https://youtu.be/d7KZXXf7_no">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec04a_Intro_Roots_of_Equations.pdf">PDF</a></td>
+    <td align="center">None</td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec04b</td>
+    <td> Bisection method</td>
+    <td align="center"> <a href="https://youtu.be/fq0Od8KrwRc">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec04b_Bisection_Method.pdf">PDF</a></td>
+    <td align="center"> <a href="numericsFa24/Octave/Lec04b_Bisection.zip">Code</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec04c</td>
+    <td> Regular Falsi Method</td>
+    <td align="center"> <a href="https://youtu.be/N8F-3KyL60M">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec04c_RegularFalsi.pdf">PDF</a></td>
+    <td align="center"> <a href="numericsFa24/Octave/Lec04c_RegularFalsi.zip">Code</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec04d</td>
+    <td> Newton Raphson method </td>
+    <td align="center"> <a href="https://youtu.be/vA9t25QyXgQ">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec04d_NewtonRaphson.pdf">PDF</a></td>
+    <td align="center"> <a href="numericsFa24/Octave/Lec04d_NewtonRaphson.zip">Code</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec05a</td>
+    <td> Introduction to solving linear algebraic equations</td>
+    <td align="center"> <a href="https://youtu.be/3nXykRxQdew">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec05a_intro_simultaneous_equations.pdf">PDF</a></td>
+    <td align="center"> <a href="numericsFa24/Octave/Lec05_Non_Iterative.zip">Code</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec05b</td>
+    <td> Gauss Elimination without pivoting</td>
+    <td align="center"> <a href="https://youtu.be/vmnGeOyopDU">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec05b_gauss_elimination_no_pivoting.pdf">PDF</a></td>
+    <td align="center"> <a href="numericsFa24/Octave/See above">Code</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec05c</td>
+    <td> Gauss elimination with partial pivoting</td>
+    <td align="center"> <a href="https://youtu.be/JkXVBixofKE">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec05c_gauss_elimination_with_pivoting.pdf">PDF</a></td>
+    <td align="center"> <a href="numericsFa24/Octave/See above">Code</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec05d</td>
+    <td> Gauss Jordan Elimination</td>
+    <td align="center"> <a href="https://youtu.be/69FcfD6Gyus">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec05d_gauss_jordan.pdf">PDF</a></td>
+    <td align="center"> <a href="numericsFa24/Octave/See above">Code</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec05e</td>
+    <td> Gauss Jordan Elimination to compute the inverse</td>
+    <td align="center"> <a href="https://youtu.be/AI43Gj3_tFA">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec05e_gauss_jordan_inverse.pdf">PDF</a></td>
+    <td align="center"> <a href="numericsFa24/Octave/See above">Code</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec06a</td>
+    <td> Jacobi iterative method</td>
+    <td align="center"> <a href="https://youtu.be/99GB8Yx3Xdg">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec06a_Jacobi.pdf">PDF</a></td>
+    <td align="center"> <a href="numericsFa24/Octave/Lec06_Iterative_methods.zip">Code</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec06b</td>
+    <td> Gauss-Siedel iterative method</td>
+    <td align="center"> <a href="https://youtu.be/IynFUNoaQ_I">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec06b_Gauss_Siedel.pdf">PDF</a></td>
+    <td align="center"> <a href="numericsFa24/Octave/Lec07_Exact_Fit.zip">Code</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec06c</td>
+    <td> Relaxation method for solving simultaneous linear equations</td>
+    <td align="center"> <a href="https://youtu.be/IguAjepCmfE">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec06c_Relaxation.pdf">PDF</a></td>
+    <td align="center"> <a href="numericsFa24/Octave/See above">Code</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec07a</td>
+    <td> Introduction to curve fitting</td>
+    <td align="center"> <a href="https://youtu.be/B4iyUUIW0dc">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec07a_intro_exact_fit.pdf">PDF</a></td>
+    <td align="center"> <a href="numericsFa24/Octave/See above">Code</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec07b</td>
+    <td> Polynomial fit (exact fit)</td>
+    <td align="center"> <a href="https://youtu.be/Ucxurh12cbQ">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec07b_polynomial_fit.pdf">PDF</a></td>
+    <td align="center"> <a href="numericsFa24/Octave/See above">Code</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec07c</td>
+    <td> Lagrange Interpolation (exact fit) </td>
+    <td align="center"> <a href="https://youtu.be/Aqor_2b5oLA">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec07c_lagrange_interpolation.pdf">PDF</a></td>
+    <td align="center"> <a href="numericsFa24/Octave/See above">Code</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec07d</td>
+    <td> Newton Divided Difference (exact fit)</td>
+    <td align="center"> <a href="https://youtu.be/sdFnJuhOIG8">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec07d_newton_divided_difference.pdf">PDF</a></td>
+    <td align="center"> <a href="numericsFa24/Octave/See above">Code</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec07e</td>
+    <td> Splines</td>
+    <td align="center"> <a href="https://youtu.be/-UluepK3tiU">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec07e_splines.pdf">PDF</a></td>
+    <td align="center"> <a href="numericsFa24/Octave/See above">Code</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec08a</td>
+    <td> Introduction to best fit curve</td>
+    <td align="center"> <a href="https://youtu.be/nyavYvGkhtg">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec08a_intro_best_fit.pdf">PDF</a></td>
+    <td align="center"> <a href="numericsFa24/Octave/Lec08_Best_Fit.zip">Code</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec08b</td>
+    <td> Linear regression (best fit)</td>
+    <td align="center"> <a href="https://youtu.be/2CxkyETB0oM">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec08b_linear_regression.pdf">PDF</a></td>
+    <td align="center"> <a href="numericsFa24/Octave/See above">Code</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec08c</td>
+    <td> Polynomial regression (best fit)</td>
+    <td align="center"> <a href="https://youtu.be/1E7Vbtf0EtQ">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec08c_polynomial_regression.pdf">PDF</a></td>
+    <td align="center"> <a href="numericsFa24/Octave/See above">Code</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec08d</td>
+    <td> Linear regression of some nonlinear function (best fit)</td>
+    <td align="center"> <a href="https://youtu.be/bQO4jwEMGX0">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec08d_nonlinear_fit.pdf">PDF</a></td>
+    <td align="center"> <a href="numericsFa24/Octave/See above">Code</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec09a</td>
+    <td> Simple Numerical Integration using Rectangular / Trapezoidal Rule</td>
+    <td align="center"> <a href="https://youtu.be/JrvWBCZLih0">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec09a_rectangular_trap.pdf">PDF</a></td>
+    <td align="center"> <a href="numericsFa24/Octave/Lec09_Integration.zip">Code</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec09b</td>
+    <td> Simple Numerical Integration with Simpsons 1/3rd / 3/8th rule</td>
+    <td align="center"> <a href="https://youtu.be/Xyreqciauvk">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec09b_simpsons.pdf">PDF</a></td>
+    <td align="center"> <a href="numericsFa24/Octave/See above">Code</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec09c</td>
+    <td> Integration from tabulated data</td>
+    <td align="center"> <a href="https://youtu.be/QC21OMxTojE">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec09c_tabulated_data.pdf">PDF</a></td>
+    <td align="center">None</td>
+</tr>
+ 
+<tr>
+    <td> Lec09d</td>
+    <td> Truncation error in Numerical Integration</td>
+    <td align="center"> <a href="https://youtu.be/vPNSyO_C1ok">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec09d_truncation_error.pdf">PDF</a></td>
+    <td align="center">None</td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec09e</td>
+    <td> Richardson extrapolation for integration</td>
+    <td align="center"> <a href="https://youtu.be/-PyshzRWE3E">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec09e_richardson.pdf">PDF</a></td>
+    <td align="center">None</td>
+</tr>
+ 
+<tr>
+    <td> Lec09f</td>
+    <td> Romberg method for numerical integration</td>
+    <td align="center"> <a href="https://youtu.be/czf1bslf4-8">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec09f_romberg.pdf">PDF</a></td>
+    <td align="center">None</td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec10a</td>
+    <td> Introduction to Ordinary Differential Equations</td>
+    <td align="center"> <a href="https://youtu.be/OgnrplglTMI">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec10a_initial_value_problems.pdf">PDF</a></td>
+    <td align="center">None</td>
+</tr>
+ 
+<tr>
+    <td> Lec10b</td>
+    <td> Euler’s method to solve ODE</td>
+    <td align="center"> <a href="https://youtu.be/PIHJWlCJc40">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec10b_euler.pdf">PDF</a></td>
+    <td align="center"> <a href="numericsFa24/Octave/Lec10b_Euler.zip">Code</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec10c</td>
+    <td> Heuns method to solve ODE</td>
+    <td align="center"> <a href="https://youtu.be/7w9ni4Hmk-0">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec10c_heun.pdf">PDF</a></td>
+    <td align="center"> <a href="numericsFa24/Octave/Lec10c_Heun.zip">Code</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec10d</td>
+    <td> Runge kutta order 2 and 4 to solve ODE</td>
+    <td align="center"> <a href="https://youtu.be/FyDl8FQRle8">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec10d_runge_kutta.pdf">PDF</a></td>
+    <td align="center">None</td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec11a</td>
+    <td> Adam Bashforth for ODE, multi-step, explicit method</td>
+    <td align="center"> <a href="https://youtu.be/EIenKLI6oTM">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec11a_Adam_Bashforth.pdf">PDF</a></td>
+    <td align="center">None</td>
+</tr>
+ 
+<tr>
+    <td> Lec11b</td>
+    <td> Adam Moulton method for ODEs, multistep, implicit method</td>
+    <td align="center"> <a href="https://youtu.be/xgEWM7OtqtI">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec11b_Adam_Moulton.pdf">PDF</a></td>
+    <td align="center">None</td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec12a</td>
+    <td> Introduction to Boundary Value Problems</td>
+    <td align="center"> <a href="https://youtu.be/PCug5mSgZ-0">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec12_Boundary_Value_Problems.pdf">PDF</a></td>
+    <td align="center">None</td>
+</tr>
+ 
+<tr>
+    <td> Lec12b</td>
+    <td> Shooting method to solve Boundary Value Problems</td>
+    <td align="center"> <a href="https://youtu.be/J0IEeleS5WU">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/See above">PDF</a></td>
+    <td align="center">None</td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec12c</td>
+    <td> Finite Difference method to solve Boundary Value Problems</td>
+    <td align="center"> <a href="https://youtu.be/uv-cSC8o_1I">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/See above">PDF</a></td>
+    <td align="center">None</td>
+</tr>
+ 
+<tr>
+    <td> Lec13a</td>
+    <td> Introduction to Partial Differential Equations</td>
+    <td align="center"> <a href="https://youtu.be/SeR1lYAWGOQ">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec13a_intro_to_PDE.pdf">PDF</a></td>
+    <td align="center">None</td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec13b</td>
+    <td> Parabolic PDE, Forward Time Central Space</td>
+    <td align="center"> <a href="https://youtu.be/3Uzz5lmh4iI">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec13b_Parabolic_FTCS.pdf">PDF</a></td>
+    <td align="center">None</td>
+</tr>
+ 
+<tr>
+    <td> Lec13c</td>
+    <td> Parabolic PDE, Lassonen or Fully implicit method</td>
+    <td align="center"> <a href="https://youtu.be/S9wim9MW6RE">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec13c_Parabolic_Laasonen.pdf">PDF</a></td>
+    <td align="center">None</td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec13d</td>
+    <td> Parabolic PDE, Crank-Nicholson</td>
+    <td align="center"> <a href="https://youtu.be/Ee2Ph6NGPNE">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec13d_Parabolic_Crank_Nicholson.pdf">PDF</a></td>
+    <td align="center">None</td>
+</tr>
+ 
+<tr>
+    <td> Lec13e</td>
+    <td> Elliptic PDE</td>
+    <td align="center"> <a href="https://youtu.be/hjBYHS661VA">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec13e_Elliptic.pdf">PDF</a></td>
+    <td align="center">None</td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec13f</td>
+    <td> Hyperbolic PDE</td>
+    <td align="center"> <a href="https://youtu.be/0dewbdPEdJE">Video</a></td>
+    <td align="center"> <a href="numericsFa24/Lectures/Lec13f_Hyperbolic.pdf">PDF</a></td>
+    <td align="center">None</td>
+</tr>
+ 
+
+ 
+<!--Contents from MATLAB end here -->
+        
+</table> </div>
+    
+<br>
+<br>
+	
+		
+	
+	
+<!-- Comment here-->
+	<br>
+		<ul>
+		<li> This table of contents was generated automatically using MATLAB</li>
+        <li>Comments/Suggestions to Pranav A. Bhounsule (pranav AT uic.edu) </li>
+		<li>Last updated: November 17, 2024</li>
+      </ul>
+		 <br> 
+		 <!-- line break-->
+	
+
+	
+<!--Comment here-->
+<!-- Start of Statcounter code->
+
+<!-- Default Statcounter code for Courses
+https://tiny.cc/courses/numericsFa24.html -->
+<script type="text/javascript">
+var sc_project=13061682; 
+var sc_invisible=1; 
+var sc_security="5f942d7a"; 
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js"
+async></script>
+<noscript><div class="statcounter"><a title="Web Analytics"
+href="https://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="https://c.statcounter.com/13061682/0/5f942d7a/1/"
+alt="Web Analytics"
+referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+<!-- End of Statcounter Code -->
+
+
+    
+    
+</body>
+</html>
