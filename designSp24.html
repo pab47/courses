@@ -1,0 +1,522 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Mechanical Engineering Design</title>
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<link href="robotics/f23/undergradStyle.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    
+    
+<h1 class="display-1 text-center" style="font-size: 75px;">Mechanical Engineering Design</h1>
+
+<!--	See help here: https://getbootstrap.com/docs/4.0/components/navbar/-->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top sticky-top" style="background-color: #f3ed11;">
+<!--    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top sticky-top">-->
+        <a class="navbar-brand" href="#"></a>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/University_of_Illinois_at_Chicago_circle_logo.svg/1200px-University_of_Illinois_at_Chicago_circle_logo.svg.png" width="30" height="30" class="d-inline-block align-top" alt="UIC Picture">
+      <a class="navbar-brand" href="#"> Top/About</a>
+        
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+			<!--   All Material  !-->
+      <li class="nav-item active">
+        <a class="nav-link" href="#FullTable">All Material<span class="sr-only">(current)</span></a>
+      </li>
+    <!--   All Material end  !-->
+		<!--   download/links starts  !-->
+        <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" href="#" id="NavbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Downloads/Links</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+<!--              <a class="dropdown-item" href="numericsFa24/Octave.zip"><b>All Octave code</b></a>-->
+              <a class="dropdown-item" href="designSp24/Lectures.zip"><b>All Lectures</b></a>
+			  <a class="dropdown-item" href="https://www.youtube.com/playlist?list=PLc7bpbeTIk76pMqQR-RXjFrgIAMG4I8kq"><b>YouTube Playlist</b></a>
+<!--		  <a class="dropdown-item" href="https://pab47.github.io/robotics_archive.html"><b>Archived pages</b></a>-->
+        </div>
+      </li>
+			<!--   download/links ends  !-->
+				<!--   other course  !-->
+		 <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" href="#" id="NavbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All courses</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="http://tiny.cc/legged"><b>Legged Robotics</b></a>
+              <a class="dropdown-item" href="http://tiny.cc/robotics"><b>Robotics MATLAB</b></a> 
+              <a class="dropdown-item" href="http://tiny.cc/roboticspy"><b>Robotics Python</b></a>
+			<a class="dropdown-item" href="http://tiny.cc/robotics23"><b>Robotics Coppelia+Py</b></a>
+			<a class="dropdown-item" href="http://tiny.cc/robotics24"><b>Robotics 2D</b></a>
+              <a class="dropdown-item" href="http://tiny.cc/mujoco"><b>MuJoCo C</b></a>
+			  <a class="dropdown-item" href="http://tiny.cc/mujocopy"><b>MuJoCo Python</b></a>
+			<a class="dropdown-item" href="http://tiny.cc/mechatronix"><b>Mechatronics</b></a>
+			<a class="dropdown-item" href="http://tiny.cc/numerics24"><b>Numerical Methods</b></a>
+        </div>
+      </li>
+		<!--   other course ends  !-->
+		<!--   My webpage starts  !-->
+		<li class="nav-item active">
+        <a class="nav-link" href="https://pab47.github.io">Pranav Bhounsule (homepage)</a>
+      </li>
+		<!--   My webpage ends  !-->
+    </ul>
+  </div>
+</nav>
+    
+<br><br>
+    <div id ="header" align="center" class="col-xl-12">
+        
+<p><b> <b>About:</b> This course teaches mechanical design based on emperical theories and demonstrates using simple numerical examples. 
+	</b></p> 
+	 </div>
+	
+		<!--- All material -->
+  
+    
+    <div align="center" class="col-xl-12" id="main">
+    <table style="width:75%" border="3">
+        <tr>
+            <!-- Adding the header colums of content materials and videos -->
+			<th style="text-align: center"><big><big>#</big></big></th>
+            <th style="text-align: center"><big><big>Topic</big></big></th>
+            <th style="text-align: center"><big><big>Youtube</big></big></th>
+            <th style="text-align: center"><big><big>Notes</big></big></th>
+<!--            <th style="text-align: center"><big><big>Code</big></big></th>-->
+        </tr>
+        
+<!--Contents from MATLAB start here  -->
+		
+<tr style="background-color: #f0f0f9">
+    <td> Lec00</td>
+    <td> Syllabus</td>
+    <td align="center"> <a href="https://youtu.be/KZrT-5yoXIw">Video</a></td>
+    <td align="center">None</td>
+</tr>
+ 
+<tr>
+    <td> Lec01</td>
+    <td> Economics, Stress/Strength, Design factor and Factory of Safety</td>
+    <td align="center"> <a href="https://youtu.be/v2wXwz0j9o8">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/Lec01.pdf">PDF</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec02</td>
+    <td> Stress-Strain curve for ductile/brittle materials</td>
+    <td align="center"> <a href="https://youtu.be/64Zh4EL_nZA">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/Lec02.pdf">PDF</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec03</td>
+    <td> Computing reaction forces in beams</td>
+    <td align="center"> <a href="https://youtu.be/FyKVbpkjjd0">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/Lec03.pdf">PDF</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec04a</td>
+    <td> Shear Force and Bending Moment Diagram, Introduction</td>
+    <td align="center"> <a href="https://youtu.be/qvfT42tSdMY">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/Lec04.pdf">PDF</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec04b</td>
+    <td> Shear Force and Bending Moment Diagram, Example 1</td>
+    <td align="center"> <a href="https://youtu.be/g6jDgVz6TeM">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/See Above">PDF</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec04c</td>
+    <td> Shear Force and Bending Moment Diagram, Example 2</td>
+    <td align="center"> <a href="https://youtu.be/2S8gDaEXtNA">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/See Above">PDF</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec05</td>
+    <td> Stress/Cartesian and Plane Stress/Strain</td>
+    <td align="center"> <a href="https://youtu.be/6EpyYgq0wtE">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/Lec05.pdf">PDF</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec06a</td>
+    <td> Mohrs Circle, Theory</td>
+    <td align="center"> <a href="https://youtu.be/L4TSnG-G88A">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/Lec06.pdf">PDF</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec06b</td>
+    <td> Mohrs Circle, Example 1</td>
+    <td align="center"> <a href="https://youtu.be/EM7lDHN4-iI">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/See Above">PDF</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec06c</td>
+    <td> Mohrs Circle, Example 2</td>
+    <td align="center"> <a href="https://youtu.be/c6CcNeJp1aQ">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/See Above">PDF</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec07</td>
+    <td> Mohr's Circle for 3D Stress</td>
+    <td align="center"> <a href="https://youtu.be/yd1mFQoOH7A">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/Lec07.pdf">PDF</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec08a</td>
+    <td> Normal stresses in beams, Theory</td>
+    <td align="center"> <a href="https://youtu.be/TiVMaS0Tirg">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/Lec08.pdf">PDF</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec08b</td>
+    <td> Normal Stresses in a beam, 3 Examples</td>
+    <td align="center"> <a href="https://youtu.be/rNbyuU_F8xw">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/See Above">PDF</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec09a</td>
+    <td> Shear Stresses in a Beam, Theory</td>
+    <td align="center"> <a href="https://youtu.be/Lg2v29GDglg">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/Lec09.pdf">PDF</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec09b</td>
+    <td> Shear Stresses in a beam, Example 1 </td>
+    <td align="center"> <a href="https://youtu.be/wcSsJPl2vEA">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/See Above">PDF</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec09c</td>
+    <td> Design problem with Shear and Bending stresses, Example</td>
+    <td align="center"> <a href="https://youtu.be/Uju46wUUH0Y">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/See Above">PDF</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec10a</td>
+    <td> Torsion of circular shafts, Theory</td>
+    <td align="center"> <a href="https://youtu.be/-7exOm2NFrw">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/Lec10.pdf">PDF</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec10b</td>
+    <td> Torsion of circular shafts, Two Examples</td>
+    <td align="center"> <a href="https://youtu.be/0kR6eBTQDRw">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/See Above">PDF</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec10c</td>
+    <td> Torsion of rectangular shafts, Theory</td>
+    <td align="center"> <a href="https://youtu.be/dZH2FOTpl6U">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/See Above">PDF</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lecc11a</td>
+    <td> Shear stresses in thin tube, Theory</td>
+    <td align="center"> <a href="https://youtu.be/uOJs4qyXCG4">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/Lec11.pdf">PDF</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec11b</td>
+    <td> Shear stresses in thin tube, Problem</td>
+    <td align="center"> <a href="https://youtu.be/RzobCY6ddiI">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/See Above">PDF</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec12a</td>
+    <td> Stress Concentration, Theory</td>
+    <td align="center"> <a href="https://youtu.be/l6A7GMA7ziU">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/Lec12.pdf">PDF</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec12b</td>
+    <td> Stress Concentration, Problem</td>
+    <td align="center"> <a href="https://youtu.be/d0UUZwhfaSY">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/See Above">PDF</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec13a</td>
+    <td> Maximum Shear Stress (MSS) Theory</td>
+    <td align="center"> <a href="https://youtu.be/8Vz2EXptiwQ">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/Lec13.pdf">PDF</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec13b</td>
+    <td> Distortion Energy (DE) Theory</td>
+    <td align="center"> <a href="https://youtu.be/6e7QLK4oxBk">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/See Above">PDF</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec13c</td>
+    <td> Problem on Max. Shear Stress (MSS) and Distortion Energy (DE) Theory</td>
+    <td align="center"> <a href="https://youtu.be/G9ot_EDaNno">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/See Above">PDF</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec14a</td>
+    <td> Ductile Mohr-Coulomb Theory</td>
+    <td align="center"> <a href="https://youtu.be/_BLTsAOy4lI">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/Lec14.pdf">PDF</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec14b</td>
+    <td> Ductile Mohr-Coulomb Theory, Example</td>
+    <td align="center"> <a href="https://youtu.be/40jwHhbc4co">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/See Above">PDF</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec15a</td>
+    <td> Failure Theories Ductile Material, Problem 1</td>
+    <td align="center"> <a href="https://youtu.be/jZV5HCpCnoc">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/Lec15.pdf">PDF</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec15b</td>
+    <td> Failure Theories Ductile Material, Problem 2</td>
+    <td align="center"> <a href="https://youtu.be/vWXpjClHXK8">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/See Above">PDF</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec16a</td>
+    <td> Failure Theory Brittle Materials (Max. Normal, Coulomb-Mohr, Mod. Mohr)</td>
+    <td align="center"> <a href="https://youtu.be/rzib8JvJ0LY">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/Lec16.pdf">PDF</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec16b</td>
+    <td> Failure Theory Brittle Materials, Problem</td>
+    <td align="center"> <a href="https://youtu.be/EP13Ep0Z11Q">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/See Above">PDF</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec17a</td>
+    <td> Introduction to Fatigue Failure</td>
+    <td align="center"> <a href="https://youtu.be/uDDa9ZCwNk8">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/Lec17.pdf">PDF</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec17b</td>
+    <td> Fatigue Failure, Theory</td>
+    <td align="center"> <a href="https://youtu.be/PwZ4YGLCtzo">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/See Above">PDF</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec17c</td>
+    <td> Fatigue Failure, Problem</td>
+    <td align="center"> <a href="https://youtu.be/8e2ACSXeNcQ">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/See Above">PDF</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec18a</td>
+    <td> Endurance limit modifying factors, Theory</td>
+    <td align="center"> <a href="https://youtu.be/KRmz3V9cmqk">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/Lec18.pdf">PDF</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec18b</td>
+    <td> Endurance limit modifying factors, 2 problems on Ka, Kb</td>
+    <td align="center"> <a href="https://youtu.be/Su7BjTcTU1E">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/See Above">PDF</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec18c</td>
+    <td> Endurance limit modifying factors, problem on Kd temperature factor</td>
+    <td align="center"> <a href="https://youtu.be/zQiew2f1Ch8">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/See Above">PDF</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec18d</td>
+    <td> Endurance limit modifying factors, problem based on all factors</td>
+    <td align="center"> <a href="https://youtu.be/d6IS2y9fb6U">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/See Above">PDF</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec19a</td>
+    <td> Stress Concentration Factor in Fatigue Loading, Theory</td>
+    <td align="center"> <a href="https://youtu.be/N0e-S9H0Avc">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/Lec19.pdf">PDF</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec19b</td>
+    <td> Stress Concentration Factor in Fatigue Loading, Problems</td>
+    <td align="center"> <a href="https://youtu.be/qxFfxALEPKw">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/See Above">PDF</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec20a</td>
+    <td> Fluctuating Stress Diagram, Theory</td>
+    <td align="center"> <a href="https://youtu.be/oVJ6alhB8p8">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/Lec20.pdf">PDF</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec20b</td>
+    <td> Fluctuating Stress Diagram, Problems</td>
+    <td align="center"> <a href="https://youtu.be/fGnHQD1tC10">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/See Above">PDF</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec21</td>
+    <td> Fatigue Failure Criterion</td>
+    <td align="center"> <a href="https://youtu.be/BS3ryFHoCo4">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/Lec21.pdf">PDF</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec22a</td>
+    <td> Design of Shafts, Theory</td>
+    <td align="center"> <a href="https://youtu.be/tSGVMI5WIh8">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/Lec22.pdf">PDF</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec22b</td>
+    <td> Design of Shafts, Problem 1 of 2</td>
+    <td align="center"> <a href="https://youtu.be/1oj--Vr5o9Y">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/See Above">PDF</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec22c</td>
+    <td> Design of Shafts, Problem 2 of 2</td>
+    <td align="center"> <a href="https://youtu.be/deImMnL2RcM">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/See Above">PDF</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec23</td>
+    <td> Miscellaneous Shaft Components, Setscrew and Keys</td>
+    <td align="center"> <a href="https://youtu.be/FB3dEq3XPRM">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/Lec23.pdf">PDF</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec24a</td>
+    <td> Roller Bearings 1 of 3</td>
+    <td align="center"> <a href="https://youtu.be/gcQBeux5Y_c">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/Lec24.pdf">PDF</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec24b</td>
+    <td> Roller Bearings 2 of 3</td>
+    <td align="center"> <a href="https://youtu.be/ioBtRzI_f_c">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/See Above">PDF</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec24c</td>
+    <td> Roller Bearings 3 of 3</td>
+    <td align="center"> <a href="https://youtu.be/70hcjxR9Vng">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/See Above">PDF</a></td>
+</tr>
+ 
+<tr style="background-color: #f0f0f9">
+    <td> Lec25</td>
+    <td> Springs, Static Loading</td>
+    <td align="center"> <a href="https://youtu.be/rxhI2QN07fE">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/Lec25.pdf">PDF</a></td>
+</tr>
+ 
+<tr>
+    <td> Lec26</td>
+    <td> Fatigue Loading of helical springs</td>
+    <td align="center"> <a href="https://youtu.be/DCyQy1G0Zts">Video</a></td>
+    <td align="center"> <a href="designSp24/Lectures/Lec26.pdf">PDF</a></td>
+</tr>
+ 
+	
+
+ 
+<!--Contents from MATLAB end here -->
+        
+</table> </div>
+    
+<br>
+<br>
+	
+		
+	
+	
+<!-- Comment here-->
+	<br>
+		<ul>
+		<li> This table of contents was generated automatically using MATLAB</li>
+        <li>Comments/Suggestions to Pranav A. Bhounsule (pranav AT uic.edu) </li>
+		<li>Last updated: November 17, 2024</li>
+      </ul>
+		 <br> 
+		 <!-- line break-->
+	
+
+	
+<!--Comment here-->
+<!-- Start of Statcounter code->
+
+<!-- Default Statcounter code for Courses
+https://tiny.cc/courses/numericsFa24.html -->
+<script type="text/javascript">
+var sc_project=13061682; 
+var sc_invisible=1; 
+var sc_security="5f942d7a"; 
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js"
+async></script>
+<noscript><div class="statcounter"><a title="Web Analytics"
+href="https://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="https://c.statcounter.com/13061682/0/5f942d7a/1/"
+alt="Web Analytics"
+referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+<!-- End of Statcounter Code -->
+
+
+    
+    
+</body>
+</html>
