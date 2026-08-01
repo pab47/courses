@@ -1,0 +1,666 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Research in Robotics - CoppeliaSim curriculum">
+      
+      
+        <meta name="author" content="Pranav A. Bhounsule">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Wheeled Robotics in CoppeliaSim</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#research-in-wheeled-robotics-using-coppeliasim" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Wheeled Robotics in CoppeliaSim" class="md-header__button md-logo" aria-label="Wheeled Robotics in CoppeliaSim" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Wheeled Robotics in CoppeliaSim
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Research in Wheeled Robotics using CoppeliaSim
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Wheeled Robotics in CoppeliaSim" class="md-nav__button md-logo" aria-label="Wheeled Robotics in CoppeliaSim" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Wheeled Robotics in CoppeliaSim
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Research in Wheeled Robotics using CoppeliaSim
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Research in Wheeled Robotics using CoppeliaSim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#outcomes-of-research" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Outcomes of Research
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#equipment-list-and-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Equipment List and Resources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-basics-of-coppeliasim-1-week" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Basics of CoppeliaSim (1 week)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-modeling-and-controlling-a-differential-drive-car-1-week" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Modeling and Controlling a Differential Drive Car (1 week)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-line-following-robot-1-week" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Line Following Robot (1 week)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-wall-following-robot-1-week" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Wall Following Robot (1 week)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-final-project-2-weeks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Final Project (2 weeks)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#outcomes-of-research" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Outcomes of Research
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#equipment-list-and-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Equipment List and Resources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-basics-of-coppeliasim-1-week" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Basics of CoppeliaSim (1 week)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-modeling-and-controlling-a-differential-drive-car-1-week" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Modeling and Controlling a Differential Drive Car (1 week)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-line-following-robot-1-week" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Line Following Robot (1 week)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-wall-following-robot-1-week" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Wall Following Robot (1 week)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-final-project-2-weeks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Final Project (2 weeks)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+<h1 id="research-in-wheeled-robotics-using-coppeliasim">Research in Wheeled Robotics using CoppeliaSim<a class="headerlink" href="#research-in-wheeled-robotics-using-coppeliasim" title="Permanent link">&para;</a></h1>
+<p>By <a href="https://tiny.cc/pranavb">Pranav A. Bhounsule</a> &nbsp;|&nbsp; <a href="mailto:pranav@uic.edu">pranav@uic.edu</a></p>
+<hr />
+<h2 id="outcomes-of-research">Outcomes of Research<a class="headerlink" href="#outcomes-of-research" title="Permanent link">&para;</a></h2>
+<p>At the end of this research, students will be able to:</p>
+<ol>
+<li>Learn basic usage of the robotics simulator, <a href="https://www.coppeliarobotics.com/">CoppeliaSim</a></li>
+<li>Create models of robotic systems</li>
+<li>Write Lua code to control robots</li>
+<li>Evaluate how to use sensors and actuators</li>
+<li>Program a robot(s) to achieve a desired task</li>
+</ol>
+<h2 id="equipment-list-and-resources">Equipment List and Resources<a class="headerlink" href="#equipment-list-and-resources" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Please download and install the education version of CoppeliaSim (it is free): <a href="https://www.coppeliarobotics.com/downloads">coppeliarobotics.com/downloads</a></li>
+<li>We will use the programming language Lua to program the robots. Here is one resource to learn Lua: <a href="https://manual.coppeliarobotics.com/en/luaCrashCourse.htm">Lua Crash Course</a>. Please feel free to search the internet for other resources.</li>
+<li>Please see (and bookmark) the regular API. This provides the list of functions that you can use to program robots: <a href="https://manual.coppeliarobotics.com/en/apiFunctions.htm">API Functions</a></li>
+<li>There is an active CoppeliaSim forum where you can ask and get answers: <a href="https://forum.coppeliarobotics.com/">forum.coppeliarobotics.com</a></li>
+<li>There are many examples and videos on CoppeliaSim projects on YouTube and GitHub. Video tutorials with code using different versions of CoppeliaSim are available here: <a href="https://tiny.cc/educate">tiny.cc/educate</a></li>
+</ol>
+<hr />
+<h2 id="1-basics-of-coppeliasim-1-week">1. Basics of CoppeliaSim (1 week)<a class="headerlink" href="#1-basics-of-coppeliasim-1-week" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Create, modify, and move shapes — <a href="https://youtu.be/qrchiEqt2ig">Watch video</a></li>
+<li>Change the viewpoint (pan/rotate/zoom/fit-to-view) — <a href="https://youtu.be/98VnjXg1wBc">Watch video</a></li>
+<li>Create composite shapes — <a href="https://youtu.be/v_NuNIdAo_U">Watch video</a></li>
+<li>Create a simulation — <a href="https://youtu.be/H_Li3QeVM-M">Watch video</a></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Exercise</p>
+<p>Your goal is to create a cascading effect like that in a Rube Goldberg machine using geometries available in CoppeliaSim. You can also arrange different orientation/position/size/shape combinations to create more interesting behaviors. Use at least 4 objects.</p>
+<p>Here is one example from YouTube: <a href="https://youtu.be/OHwDf8njVfo?t=85">Watch example</a></p>
+<p><strong>Send your <code>.ttt</code> file to <a href="mailto:pranav@uic.edu">pranav@uic.edu</a></strong></p>
+</div>
+<h2 id="2-modeling-and-controlling-a-differential-drive-car-1-week">2. Modeling and Controlling a Differential Drive Car (1 week)<a class="headerlink" href="#2-modeling-and-controlling-a-differential-drive-car-1-week" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Modeling a differential drive car — <a href="https://youtu.be/uoL4J9QDZK0">Watch video</a></li>
+<li>Controlling a differential drive car — <a href="https://youtu.be/IW1-4hy_yEg">Watch video</a></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Exercise</p>
+<p>Get the car to move in a rectangular path by controlling the speed of the wheels.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Help</p>
+<p>If you find it difficult to model the car, you can download the model from here and proceed to control it: <a href="https://github.com/pab47/CoppeliaSim/blob/main/430/differential_drive.ttt">differential_drive.ttt</a></p>
+<p><strong>Send your <code>.ttt</code> file to <a href="mailto:pranav@uic.edu">pranav@uic.edu</a></strong></p>
+</div>
+<h2 id="3-line-following-robot-1-week">3. Line Following Robot (1 week)<a class="headerlink" href="#3-line-following-robot-1-week" title="Permanent link">&para;</a></h2>
+<p>Download the Line Following Robot: <a href="https://github.com/pab47/CoppeliaSim/blob/main/430/line_follower_1_speed.ttt">line_follower_1_speed.ttt</a></p>
+<ol>
+<li>Understanding how to access the vision sensors — <a href="https://youtu.be/pNJh83cp1lY">Watch video</a></li>
+<li>Algorithm for line following — <a href="https://youtu.be/jduuJwK8uME">Watch video</a></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Exercise</p>
+<p>Download this scene and copy-paste the code you developed: <a href="https://github.com/pab47/CoppeliaSim/blob/main/430/line_follower_exercise.ttt">line_follower_exercise.ttt</a></p>
+<p>Tune the controller to complete the loop in the fastest time.</p>
+<p><strong>Send your <code>.ttt</code> file to <a href="mailto:pranav@uic.edu">pranav@uic.edu</a></strong></p>
+</div>
+<h2 id="4-wall-following-robot-1-week">4. Wall Following Robot (1 week)<a class="headerlink" href="#4-wall-following-robot-1-week" title="Permanent link">&para;</a></h2>
+<p>Download the wall following robot here: <a href="https://github.com/pab47/CoppeliaSim/blob/main/430/wall_follower.ttt">wall_follower.ttt</a></p>
+<ol>
+<li>Understanding how to access the proximity sensors — <a href="https://youtu.be/iD2Dc6r7PeQ">Watch video</a></li>
+<li>Algorithm for wall following (feel free to develop your own too) — <a href="https://youtu.be/oxQeojd7RTM">Watch video</a></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Exercise</p>
+<p>Download this scene and copy-paste the code you developed for the wall following robot: <a href="https://github.com/pab47/CoppeliaSim/blob/main/430/maze_solver_exercise.ttt">maze_solver_exercise.ttt</a></p>
+<p>Tune the controller to move from start to goal in the fastest time without colliding with the walls.</p>
+<p>Here is an example of the finished maze navigation: <a href="https://youtu.be/NZeG0vLbzJ0">Watch example</a></p>
+<p><strong>Send your <code>.ttt</code> file to <a href="mailto:pranav@uic.edu">pranav@uic.edu</a></strong></p>
+</div>
+<h2 id="5-final-project-2-weeks">5. Final Project (2 weeks)<a class="headerlink" href="#5-final-project-2-weeks" title="Permanent link">&para;</a></h2>
+<p>Your goal is to use the knowledge you have gained to make an informed choice for a robotic project. Then, you will implement the project in CoppeliaSim and create a short presentation explaining your work.</p>
+<p>Here is a list of possible robot projects based on mobile cars. But feel free to choose something else. Search YouTube and the internet for more ideas.</p>
+<ol>
+<li>A robot that navigates through a maze</li>
+<li>A robot that avoids obstacles and drives to the goal</li>
+<li>A robot that pushes objects out of a marked area. The robot detects objects using proximity sensors. (<strong>Hint:</strong> search for sumo bot)</li>
+<li>Create a video game using a mobile robot. This video shows how to program keyboard presses: <a href="https://youtu.be/dd0Rw3HiAes?si=R6tMWsPtbtBVLhni">Watch video</a></li>
+<li>A robot that parallel parks using vision sensors</li>
+<li>A robot that drives on a road using vision sensors</li>
+</ol>
+<div class="admonition success">
+<p class="admonition-title">Submission</p>
+<p><strong>Send your <code>.ttt</code> file and presentation to <a href="mailto:pranav@uic.edu">pranav@uic.edu</a></strong></p>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

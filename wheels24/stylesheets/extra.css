@@ -1,0 +1,7 @@
+/* Move the table-of-contents sidebar (normally on the right) to the left,
+   next to the content, since the primary navigation sidebar is hidden. */
+@media screen and (min-width: 76.25em) {
+  .md-sidebar--secondary {
+    order: -1;
+  }
+}
