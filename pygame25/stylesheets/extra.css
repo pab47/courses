@@ -1,0 +1,17 @@
+/* Move the table-of-contents sidebar (normally on the right) to the left,
+   next to the content, since the primary navigation sidebar is hidden. */
+@media screen and (min-width: 76.25em) {
+  .md-sidebar--secondary {
+    order: -1;
+  }
+}
+
+/* Distinct background tint for this course site */
+:root,
+[data-md-color-scheme="default"] {
+  --md-default-bg-color: #faf5ff;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: #1a1523;
+}
