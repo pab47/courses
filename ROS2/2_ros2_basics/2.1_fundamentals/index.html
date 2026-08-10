@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Your Name" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>2.1 Fundamentals - ROS 2 Tutorial</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "2.1 Fundamentals";
+        var mkdocs_page_input_path = "2_ros2_basics/2.1_fundamentals.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/xml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/cmake.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> ROS 2 Tutorial
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../1_installation/">1. Installation</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. ROS2 Basics with ddrive</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">2.1 Fundamentals</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#from-python-functions-to-ros-2">From Python functions to ROS 2</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#1-nodes-active-computational-blocks">1. Nodes: active computational blocks</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#a-node-is-more-than-one-function">A node is more than one function</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-topics-communication-channels">2. Topics: communication channels</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#topics-are-asynchronous">Topics are asynchronous</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-messages-the-data-being-exchanged">3. Messages: the data being exchanged</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-publishers-and-subscribers">4. Publishers and subscribers</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5-callbacks-where-the-computation-happens">5. Callbacks: where the computation happens</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#6-services-request-and-response">6. Services: request and response</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#7-actions-long-running-tasks">7. Actions: long-running tasks</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#8-parameters-configurable-variables">8. Parameters: configurable variables</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#9-packages-organizing-the-software">9. Packages: organizing the software</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#10-building-a-package">10. Building a package</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#11-sourcing-a-workspace">11. Sourcing a workspace</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#12-running-nodes-manually">12. Running nodes manually</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#13-launch-files">13. Launch files</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#important-clarification">Important clarification</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2.2_ddrive/">2.2 ddrive</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2.3_ddrive_ik/">2.3 ddrive_ik</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2.4_ddrive_ik_msgs/">2.4 ddrive_ik_msgs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2.5_exercise_mecanum/">2.5 Exercise - Mecanum Car</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3. RViz Basics with twolink</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3_rviz_basics/3.1_twolink/">3.1 twolink</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3_rviz_basics/3.2_twolink_ik/">3.2 twolink_ik</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3_rviz_basics/3.3_exercise_threelink_ik/">3.3 Exercise - threelink_ik</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4. Gazebo Basics with dbpendulum</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4_gazebo_basics/4.1_dbpendulum/">4.1 dbpendulum</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4_gazebo_basics/4.2_dbpendulum_ctrl/">4.2 dbpendulum_ctrl</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4_gazebo_basics/4.3_exercise_single_pendulum/">4.3 Exercise - Single Pendulum</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">ROS 2 Tutorial</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">2. ROS2 Basics with ddrive</li>
+      <li class="breadcrumb-item active">2.1 Fundamentals</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="21-fundamentals">2.1 Fundamentals<a class="headerlink" href="#21-fundamentals" title="Permanent link">&para;</a></h1>
+<h2 id="from-python-functions-to-ros-2">From Python functions to ROS 2<a class="headerlink" href="#from-python-functions-to-ros-2" title="Permanent link">&para;</a></h2>
+<p>If you already know Python, one useful way to understand ROS 2 is to start with something familiar: <strong>functions</strong>.</p>
+<p>A normal Python program might look like this:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">read_sensor</span><span class="p">()</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">controller</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">send_command</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+</code></pre></div>
+<p>The programmer controls the sequence. <code>main()</code> calls one function, which calls another, and the program proceeds step by step.</p>
+<p>A robot is different.</p>
+<p>A robot operates in the real world, where time keeps moving. Sensors continuously produce data, controllers continuously compute commands, and other parts of the system need to keep running.</p>
+<p>ROS 2 provides a way to organize this continuous computation.</p>
+<blockquote>
+<p><strong>A ROS 2 node can be thought of as an active computational program that stays alive and responds to events.</strong></p>
+</blockquote>
+<p>This is not a literal definition of a node, but it is a useful mental model when coming from traditional Python programming.</p>
+<hr />
+<h2 id="1-nodes-active-computational-blocks">1. Nodes: active computational blocks<a class="headerlink" href="#1-nodes-active-computational-blocks" title="Permanent link">&para;</a></h2>
+<p>A <strong>node</strong> is a running ROS 2 program that performs a particular responsibility.</p>
+<p>For a differential-drive robot, you might have:</p>
+<ul>
+<li>a <strong>localization node</strong> that estimates the robot's position,</li>
+<li>a <strong>planner node</strong> that determines a path,</li>
+<li>a <strong>controller node</strong> that computes velocity commands,</li>
+<li>a <strong>simulator node</strong> that moves the robot,</li>
+<li>a <strong>visualization node</strong> that displays the robot's state.</li>
+</ul>
+<p>Each node can operate independently.</p>
+<p>This is different from a traditional program in which functions are called directly:</p>
+<div class="highlight"><pre><span></span><code>Traditional Python
+
+main()
+  |
+  +--&gt; localization()
+  |
+  +--&gt; planner()
+  |
+  +--&gt; controller()
+</code></pre></div>
+<p>In ROS 2, the components are independent:</p>
+<div class="highlight"><pre><span></span><code>ROS 2
+
+Localization node  ---&gt;  topic  ---&gt;  Controller node
+                                           |
+                                           | topic
+                                           v
+                                      Simulator node
+</code></pre></div>
+<p>The nodes do not need to directly call one another.</p>
+<p>They communicate through ROS 2's communication mechanisms.</p>
+<h3 id="a-node-is-more-than-one-function">A node is more than one function<a class="headerlink" href="#a-node-is-more-than-one-function" title="Permanent link">&para;</a></h3>
+<p>The analogy to a function is useful, but a node is not literally a function.</p>
+<p>A Python ROS 2 node is commonly implemented as a class containing several functions, such as:</p>
+<ul>
+<li>subscriber callback functions,</li>
+<li>timer callback functions,</li>
+<li>service callback functions,</li>
+<li>action callbacks.</li>
+</ul>
+<p>The node stays alive, while ROS 2 calls the appropriate function when something happens.</p>
+<p>For example, a controller might have a callback that executes whenever a new robot pose arrives:</p>
+<div class="highlight"><pre><span></span><code>new pose arrives
+      |
+      v
+controller callback()
+      |
+      +--&gt; compute control
+      |
+      +--&gt; publish cmd_vel
+</code></pre></div>
+<p>So a useful mental model is:</p>
+<blockquote>
+<p><strong>A node is an active computational block containing functions that respond to events.</strong></p>
+</blockquote>
+<hr />
+<h2 id="2-topics-communication-channels">2. Topics: communication channels<a class="headerlink" href="#2-topics-communication-channels" title="Permanent link">&para;</a></h2>
+<p>A <strong>topic</strong> is a named communication channel.</p>
+<p>Topics do not perform the computation themselves. They carry messages between nodes.</p>
+<p>Think of the analogy with a traditional function:</p>
+<div class="highlight"><pre><span></span><code>Python function
+
+input --&gt; function --&gt; output
+</code></pre></div>
+<p>In ROS 2:</p>
+<div class="highlight"><pre><span></span><code>Node A --&gt; topic --&gt; Node B
+</code></pre></div>
+<p>The topic is like the connection between the two computational blocks.</p>
+<p>For example, a localization node might publish the robot's estimated position on the <code>odom</code> topic:</p>
+<div class="highlight"><pre><span></span><code>Localization node
+       |
+       | publishes pose
+       v
+     /odom
+       |
+       | subscribed by
+       v
+Controller node
+</code></pre></div>
+<p>The controller does not directly call the localization node.</p>
+<p>It simply subscribes to <code>/odom</code>.</p>
+<p>This separation is important because the publisher does not need to know who is listening.</p>
+<h3 id="topics-are-asynchronous">Topics are asynchronous<a class="headerlink" href="#topics-are-asynchronous" title="Permanent link">&para;</a></h3>
+<p>ROS 2 communication is generally asynchronous.</p>
+<p>A publisher sends a message when it has one.</p>
+<p>A subscriber receives it and ROS 2 schedules the appropriate callback.</p>
+<p>The two nodes do not have to execute at exactly the same time.</p>
+<p>This is different from a normal Python function call, where the caller waits for the function to execute and return.</p>
+<hr />
+<h2 id="3-messages-the-data-being-exchanged">3. Messages: the data being exchanged<a class="headerlink" href="#3-messages-the-data-being-exchanged" title="Permanent link">&para;</a></h2>
+<p>A <strong>message</strong> defines the type and structure of data being sent on a topic.</p>
+<p>For example, a topic might carry:</p>
+<ul>
+<li>a position,</li>
+<li>a velocity,</li>
+<li>a laser scan,</li>
+<li>an image,</li>
+<li>an IMU measurement,</li>
+<li>a robot pose.</li>
+</ul>
+<p>You can think of the message as the data structure being passed between computational blocks.</p>
+<p>For example:</p>
+<div class="highlight"><pre><span></span><code>/odom
+  |
+  |  Odometry message
+  v
+Controller
+</code></pre></div>
+<p>The topic tells us <strong>where</strong> the data is being communicated.</p>
+<p>The message tells us <strong>what the data looks like</strong>.</p>
+<p>This distinction is important:</p>
+<blockquote>
+<p><strong>Topic = communication channel.</strong><br />
+<strong>Message = data carried by the channel.</strong></p>
+</blockquote>
+<hr />
+<h2 id="4-publishers-and-subscribers">4. Publishers and subscribers<a class="headerlink" href="#4-publishers-and-subscribers" title="Permanent link">&para;</a></h2>
+<p>A node uses a <strong>publisher</strong> to send messages to a topic.</p>
+<p>A node uses a <strong>subscriber</strong> to receive messages from a topic.</p>
+<p>For example, consider a differential-drive controller.</p>
+<p>It needs two inputs:</p>
+<ol>
+<li>The current robot pose.</li>
+<li>The desired goal.</li>
+</ol>
+<p>It produces one output:</p>
+<ol>
+<li>A velocity command.</li>
+</ol>
+<p>Conceptually:</p>
+<div class="highlight"><pre><span></span><code>             /odom
+               |
+               v
+        +--------------+
+        |              |
+/goal -&gt;|  Controller  |-&gt; /cmd_vel
+        |              |
+        +--------------+
+</code></pre></div>
+<p>The controller:</p>
+<ul>
+<li><strong>subscribes</strong> to <code>/odom</code>,</li>
+<li><strong>subscribes</strong> to <code>/goal</code>,</li>
+<li>computes the control command,</li>
+<li><strong>publishes</strong> to <code>/cmd_vel</code>.</li>
+</ul>
+<p>A node can have:</p>
+<ul>
+<li>many inputs and outputs,</li>
+<li>only inputs,</li>
+<li>only outputs,</li>
+<li>or neither.</li>
+</ul>
+<p>For example, a node that only displays information might only subscribe to topics.</p>
+<p>A node that generates a fixed command might only publish.</p>
+<hr />
+<h2 id="5-callbacks-where-the-computation-happens">5. Callbacks: where the computation happens<a class="headerlink" href="#5-callbacks-where-the-computation-happens" title="Permanent link">&para;</a></h2>
+<p>The actual robotics computation still happens in your Python code.</p>
+<p>ROS 2 does not replace your equations.</p>
+<p>Suppose your controller uses:</p>
+<div class="highlight"><pre><span></span><code>heading_error = desired_heading - current_heading
+</code></pre></div>
+<p>and then computes a velocity command.</p>
+<p>That calculation can be ordinary Python.</p>
+<p>The difference is how the data gets into and out of the function.</p>
+<p>In a traditional program:</p>
+<div class="highlight"><pre><span></span><code>pose = get_pose()
+goal = get_goal()
+
+command = controller(pose, goal)
+</code></pre></div>
+<p>In ROS 2:</p>
+<div class="highlight"><pre><span></span><code>/odom ----\
+           \
+            -&gt; controller callback -&gt; /cmd_vel
+           /
+/goal ----/
+</code></pre></div>
+<p>ROS 2 calls the callback when the relevant events occur.</p>
+<p>This is why ROS 2 is often described as <strong>event-driven</strong>.</p>
+<hr />
+<h2 id="6-services-request-and-response">6. Services: request and response<a class="headerlink" href="#6-services-request-and-response" title="Permanent link">&para;</a></h2>
+<p>Topics are useful when information is continuously exchanged.</p>
+<p>But sometimes we want to ask a node to do something and receive a response.</p>
+<p>That is a <strong>service</strong>.</p>
+<p>A useful analogy is:</p>
+<blockquote>
+<p><strong>A service is similar to calling a function on another node.</strong></p>
+</blockquote>
+<p>For example:</p>
+<div class="highlight"><pre><span></span><code>reset_simulation()
+</code></pre></div>
+<p>The request might be:</p>
+<div class="highlight"><pre><span></span><code>&quot;Reset the robot.&quot;
+</code></pre></div>
+<p>The response might be:</p>
+<div class="highlight"><pre><span></span><code>&quot;Reset successful.&quot;
+</code></pre></div>
+<p>Unlike a topic, the interaction is explicitly:</p>
+<div class="highlight"><pre><span></span><code>request
+   |
+   v
+service
+   |
+   v
+response
+</code></pre></div>
+<p>Services are useful for short operations where we expect a response.</p>
+<p>Examples include:</p>
+<ul>
+<li>resetting a simulator,</li>
+<li>requesting a calculation,</li>
+<li>changing a simple state,</li>
+<li>triggering a short operation.</li>
+</ul>
+<p>Services are <strong>not primarily for starting and stopping nodes</strong>. Node lifecycle and process management are handled through other ROS 2 mechanisms.</p>
+<hr />
+<h2 id="7-actions-long-running-tasks">7. Actions: long-running tasks<a class="headerlink" href="#7-actions-long-running-tasks" title="Permanent link">&para;</a></h2>
+<p>What if the request takes a long time?</p>
+<p>Suppose we tell the robot:</p>
+<blockquote>
+<p>"Drive to this goal."</p>
+</blockquote>
+<p>The robot might need 30 seconds.</p>
+<p>A simple service is not ideal because we want to know what is happening while the task is running.</p>
+<p>An <strong>action</strong> is designed for this type of problem.</p>
+<p>An action can provide:</p>
+<ul>
+<li>a goal,</li>
+<li>feedback while the goal is executing,</li>
+<li>a final result,</li>
+<li>the ability to cancel the goal.</li>
+</ul>
+<p>Conceptually:</p>
+<div class="highlight"><pre><span></span><code>             goal
+              |
+              v
+        +-------------+
+        |   Action    |
+        +-------------+
+              |
+        feedback
+              |
+              v
+        20% ... 50% ... 90%
+              |
+              v
+            result
+</code></pre></div>
+<p>For example:</p>
+<div class="highlight"><pre><span></span><code>&quot;Drive to X = 5, Y = 3.&quot;
+
+       ↓
+
+&quot;Goal accepted.&quot;
+
+       ↓
+
+&quot;30% complete.&quot;
+
+       ↓
+
+&quot;70% complete.&quot;
+
+       ↓
+
+&quot;Goal reached.&quot;
+</code></pre></div>
+<p>This makes actions particularly useful for navigation and manipulation tasks.</p>
+<p>A simple way to remember the three communication patterns is:</p>
+<blockquote>
+<p><strong>Topic:</strong> exchange information.<br />
+<strong>Service:</strong> request something and get a response.<br />
+<strong>Action:</strong> request a task that takes time and receive feedback.</p>
+</blockquote>
+<hr />
+<h2 id="8-parameters-configurable-variables">8. Parameters: configurable variables<a class="headerlink" href="#8-parameters-configurable-variables" title="Permanent link">&para;</a></h2>
+<p>A ROS 2 <strong>parameter</strong> is a configurable value associated with a node.</p>
+<p>For example, a controller might have:</p>
+<div class="highlight"><pre><span></span><code>maximum_speed = 1.0
+Kp = 2.0
+heading_tolerance = 0.05
+</code></pre></div>
+<p>Instead of hard-coding these values into the program, we can expose them as ROS parameters.</p>
+<p>The important idea is:</p>
+<blockquote>
+<p><strong>Parameters allow us to configure a node without changing its source code.</strong></p>
+</blockquote>
+<p>For example, we might run the same controller with different values of <code>Kp</code>.</p>
+<p>Parameters are similar to variables in your program, but it is more accurate to think of them as <strong>externally configurable settings belonging to a node</strong>.</p>
+<hr />
+<h2 id="9-packages-organizing-the-software">9. Packages: organizing the software<a class="headerlink" href="#9-packages-organizing-the-software" title="Permanent link">&para;</a></h2>
+<p>A <strong>package</strong> is a unit of ROS 2 software organization.</p>
+<p>A package can contain:</p>
+<ul>
+<li>Python nodes,</li>
+<li>Python modules,</li>
+<li>launch files,</li>
+<li>configuration files,</li>
+<li>message definitions,</li>
+<li>service definitions,</li>
+<li>action definitions,</li>
+<li>robot descriptions,</li>
+<li>other resources.</li>
+</ul>
+<p>A package might contain one node or many nodes.</p>
+<p>For example:</p>
+<div class="highlight"><pre><span></span><code>ddrive package
+
+    controller node
+    localization node
+    simulator node
+    planner node
+    launch file
+    configuration files
+</code></pre></div>
+<p>The package is therefore closer to a <strong>software project</strong> than to a single function.</p>
+<hr />
+<h2 id="10-building-a-package">10. Building a package<a class="headerlink" href="#10-building-a-package" title="Permanent link">&para;</a></h2>
+<p>After creating or modifying ROS 2 software, we commonly use:</p>
+<div class="highlight"><pre><span></span><code>colcon<span class="w"> </span>build
+</code></pre></div>
+<p>The build process prepares the packages in the workspace so they can be used by ROS 2.</p>
+<p>A useful distinction is:</p>
+<blockquote>
+<p><strong>Build = prepare the software.</strong></p>
+</blockquote>
+<p>You do not necessarily build only once for the lifetime of a package.</p>
+<p>You rebuild when you make changes that require rebuilding.</p>
+<p>For example, adding a package or changing package configuration requires a build.</p>
+<hr />
+<h2 id="11-sourcing-a-workspace">11. Sourcing a workspace<a class="headerlink" href="#11-sourcing-a-workspace" title="Permanent link">&para;</a></h2>
+<p>After building, we commonly run:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>install/setup.bash
+</code></pre></div>
+<p><code>source</code> does not build the package.</p>
+<p>Instead, it runs the setup script <strong>inside your current terminal shell</strong>.</p>
+<p>The setup script changes environment variables so that your terminal knows where your ROS 2 packages, executables, Python modules, and libraries are located.</p>
+<p>A useful mental model is:</p>
+<blockquote>
+<p><strong>Build = prepare the software.</strong><br />
+<strong>Source = tell this terminal where the software is.</strong><br />
+<strong>Run = start the software.</strong></p>
+</blockquote>
+<p>You normally need to source the workspace in each new terminal where you want to use that workspace.</p>
+<hr />
+<h2 id="12-running-nodes-manually">12. Running nodes manually<a class="headerlink" href="#12-running-nodes-manually" title="Permanent link">&para;</a></h2>
+<p>Suppose the <code>ddrive</code> package contains a controller node.</p>
+<p>After sourcing the workspace, we might run:</p>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>run<span class="w"> </span>ddrive<span class="w"> </span>controller
+</code></pre></div>
+<p>This starts the controller node.</p>
+<p>If we have several nodes, we could start them individually.</p>
+<p>For example:</p>
+<div class="highlight"><pre><span></span><code>ros2 run ddrive localization
+ros2 run ddrive planner
+ros2 run ddrive controller
+ros2 run ddrive simulator
+</code></pre></div>
+<p>This is useful while learning and debugging.</p>
+<p>However, manually starting a large robot system becomes inconvenient.</p>
+<hr />
+<h2 id="13-launch-files">13. Launch files<a class="headerlink" href="#13-launch-files" title="Permanent link">&para;</a></h2>
+<p>A <strong>launch file</strong> allows us to start multiple nodes and configure them together.</p>
+<p>Instead of manually starting:</p>
+<div class="highlight"><pre><span></span><code>localization
+planner
+controller
+simulator
+visualization
+</code></pre></div>
+<p>we can create one launch file.</p>
+<p>Then we can run:</p>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>launch<span class="w"> </span>ddrive<span class="w"> </span>robot.launch.py
+</code></pre></div>
+<p>The launch system starts the required nodes.</p>
+<p>Conceptually:</p>
+<div class="highlight"><pre><span></span><code>                  Launch file
+                      |
+       +--------------+--------------+
+       |              |              |
+       v              v              v
+ Localization      Planner       Controller
+                                      |
+                                      v
+                                  Simulator
+</code></pre></div>
+<p>This is how a real robot system can be started with a single command.</p>
+<h3 id="important-clarification">Important clarification<a class="headerlink" href="#important-clarification" title="Permanent link">&para;</a></h3>
+<p>You do <strong>not</strong> need one terminal for every node.</p>
+<p>You can run multiple processes from a terminal, and launch files can start many nodes for you.</p>
+<p>The point of a launch file is not simply to avoid opening many terminals. It also lets you specify how the nodes should be configured, which parameters they use, what other resources they need, and how the overall system should start.</p>
+<hr />
+<h1 id="putting-everything-together">Putting everything together<a class="headerlink" href="#putting-everything-together" title="Permanent link">&para;</a></h1>
+<p>Let's return to our differential-drive robot.</p>
+<p>Suppose we want to drive from a starting point to a goal.</p>
+<p>We might have:</p>
+<div class="highlight"><pre><span></span><code>                 /goal
+                   |
+                   v
+             +-----------+
+             |  Planner  |
+             +-----------+
+                   |
+                 /path
+                   |
+                   v
+             +-----------+
+ /odom ----&gt; | Controller| ----&gt; /cmd_vel
+             +-----------+
+                                  |
+                                  v
+                           +-------------+
+                           |  Simulator  |
+                           +-------------+
+                                  |
+                                /odom
+                                  |
+                                  +----&gt; Controller
+</code></pre></div>
+<p>The important point is that <strong>ROS 2 does not provide the robotics equations automatically</strong>.</p>
+<p>Your controller still contains your control law.</p>
+<p>Your planner still contains your planning algorithm.</p>
+<p>Your simulator still contains the differential-drive equations.</p>
+<p>For example, the simulator might integrate:</p>
+<div class="highlight"><pre><span></span><code>x_dot     = v cos(theta)
+y_dot     = v sin(theta)
+theta_dot = omega
+</code></pre></div>
+<p>ROS 2 provides the software architecture that allows these computational components to communicate.</p>
+<hr />
+<h1 id="the-big-picture">The big picture<a class="headerlink" href="#the-big-picture" title="Permanent link">&para;</a></h1>
+<p>Traditional Python programming often looks like:</p>
+<div class="highlight"><pre><span></span><code>main()
+  |
+  +--&gt; function A
+  |
+  +--&gt; function B
+  |
+  +--&gt; function C
+</code></pre></div>
+<p>ROS 2 turns this into a collection of independent computational components:</p>
+<div class="highlight"><pre><span></span><code>             topic
+Node A ----------------&gt; Node B
+  |                       |
+  |                       |
+  v                       v
+topic                    topic
+  |                       |
+  +-------&gt; Node C &lt;------+
+</code></pre></div>
+<p>So the conceptual progression is:</p>
+<p><strong>Function</strong></p>
+<p>→ a piece of code that performs a computation.</p>
+<p><strong>Node</strong></p>
+<p>→ an active computational component that stays alive.</p>
+<p><strong>Callback</strong></p>
+<p>→ a function inside a node that ROS 2 invokes when an event occurs.</p>
+<p><strong>Topic</strong></p>
+<p>→ a communication channel between nodes.</p>
+<p><strong>Message</strong></p>
+<p>→ the data traveling through the channel.</p>
+<p><strong>Service</strong></p>
+<p>→ a request-response interaction.</p>
+<p><strong>Action</strong></p>
+<p>→ a long-running, feedback-enabled task.</p>
+<p><strong>Parameter</strong></p>
+<p>→ a configurable value associated with a node.</p>
+<p><strong>Package</strong></p>
+<p>→ an organized unit of ROS 2 software.</p>
+<p><strong>Launch file</strong></p>
+<p>→ a way to start and configure a collection of nodes as a system.</p>
+<p>This gives us the foundation we need for the next step: building the <code>ddrive</code> package and seeing how these concepts become actual Python code.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../1_installation/" class="btn btn-neutral float-left" title="1. Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../2.2_ddrive/" class="btn btn-neutral float-right" title="2.2 ddrive">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../1_installation/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../2.2_ddrive/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
