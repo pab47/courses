@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Your Name" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>2.2 ddrive - ROS 2 Tutorial</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../stylesheets/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "2.2 ddrive";
+        var mkdocs_page_input_path = "2_ros2_basics/2.2_ddrive.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/xml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/cmake.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> ROS 2 Tutorial
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../1_installation/">1. Installation</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. ROS2 Basics with ddrive</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../2.1_fundamentals/">2.1 Fundamentals</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">2.2 ddrive</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#0-install-the-package">0. Install the package</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#1-whats-in-the-package">1. What's in the package</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-run-it">2. Run it</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#stage-1-pose-no-motion-2-terminals">Stage 1 — pose, no motion (2 terminals)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#stage-2-command-it-3rd-terminal">Stage 2 — command it (3rd terminal)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#stage-3-collapse-into-a-launch-file">Stage 3 — collapse into a launch file</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-look-at-the-graph-nodes-and-topics">3. Look at the graph — nodes and topics</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-change-how-fast-it-moves">4. Change how fast it moves</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5-parameters-more-than-one-way-to-set-them">5. Parameters — more than one way to set them</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#6-whats-next">6. What's next</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2.3_ddrive_ik/">2.3 ddrive_ik</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2.4_ddrive_ik_msgs/">2.4 ddrive_ik_msgs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2.5_exercise_mecanum/">2.5 Exercise - Mecanum Car</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3. RViz Basics with twolink</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3_rviz_basics/3.1_twolink/">3.1 twolink</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3_rviz_basics/3.2_twolink_ik/">3.2 twolink_ik</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3_rviz_basics/3.3_exercise_threelink_ik/">3.3 Exercise - threelink_ik</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4. Gazebo Basics with dbpendulum</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4_gazebo_basics/4.1_dbpendulum/">4.1 dbpendulum</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4_gazebo_basics/4.2_dbpendulum_ctrl/">4.2 dbpendulum_ctrl</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4_gazebo_basics/4.3_exercise_single_pendulum/">4.3 Exercise - Single Pendulum</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">ROS 2 Tutorial</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">2. ROS2 Basics with ddrive</li>
+      <li class="breadcrumb-item active">2.2 ddrive</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="22-ddrive-forward-kinematics">2.2 ddrive: Forward Kinematics<a class="headerlink" href="#22-ddrive-forward-kinematics" title="Permanent link">&para;</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Package download</p>
+<p><a href="https://pab47.github.io/courses/ROS2/downloads/ddrive.zip">Download <code>ddrive.zip</code></a></p>
+</div>
+<p><code>ddrive</code> is a two-node "turtlesim, but you built it" package. One node
+holds a pose and integrates it with a hand-written Euler integrator; the
+other node visualizes it.</p>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Owns</th>
+<th>Subscribes</th>
+<th>Publishes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ddrive_sim</code></td>
+<td>the pose <code>[x, y, theta]</code>, the integrator</td>
+<td><code>/cmd_vel</code> (<code>geometry_msgs/Twist</code>)</td>
+<td><code>/pose</code> (<code>geometry_msgs/Pose2D</code>)</td>
+</tr>
+<tr>
+<td><code>ddrive_viz</code></td>
+<td>nothing — just draws</td>
+<td><code>/pose</code></td>
+<td>— (opens a matplotlib window)</td>
+</tr>
+</tbody>
+</table>
+<p><code>ddrive_sim</code> works fine with nobody ever publishing to <code>/cmd_vel</code> — it
+just holds still at its initial pose and keeps publishing that pose
+every <code>dt</code> seconds. That's what makes the staged workflow below
+possible: you can <em>see</em> the system before you <em>drive</em> it.</p>
+<h2 id="0-install-the-package">0. Install the package<a class="headerlink" href="#0-install-the-package" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>~/ros2_ws/src
+cp<span class="w"> </span>-r<span class="w"> </span>ddrive<span class="w"> </span>~/ros2_ws/src/
+<span class="nb">cd</span><span class="w"> </span>~/ros2_ws
+<span class="nb">source</span><span class="w"> </span>/opt/ros/<span class="nv">$ROS_DISTRO</span>/setup.bash
+rosdep<span class="w"> </span>install<span class="w"> </span>--from-paths<span class="w"> </span>src<span class="w"> </span>--ignore-src<span class="w"> </span>-r<span class="w"> </span>-y
+colcon<span class="w"> </span>build<span class="w"> </span>--packages-select<span class="w"> </span>ddrive
+<span class="nb">source</span><span class="w"> </span>install/setup.bash
+</code></pre></div>
+<p>Checkpoint:</p>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>pkg<span class="w"> </span>executables<span class="w"> </span>ddrive
+</code></pre></div>
+<p>should list exactly two: <code>ddrive ddrive_sim</code> and <code>ddrive ddrive_viz</code>.</p>
+<h2 id="1-whats-in-the-package">1. What's in the package<a class="headerlink" href="#1-whats-in-the-package" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>ddrive/
+├── package.xml          # name, dependencies (rclpy, geometry_msgs), build type
+├── setup.py             # registers the two executables below
+├── setup.cfg
+├── resource/ddrive       # marker file ament needs to find the package
+├── config/
+│   └── params.yaml       # default parameters for both nodes
+├── launch/
+│   └── ddrive_launch.py  # brings sim + viz up together
+└── ddrive/
+    ├── __init__.py
+    ├── kinematics.py     # pure Python, no ROS import — the Euler integrator
+    ├── sim_node.py       # ddrive_sim
+    └── viz_node.py       # ddrive_viz
+</code></pre></div>
+<p><strong><code>kinematics.py</code></strong> is deliberately ROS-free. It's the same math as the
+original <code>diff_drive_fk.py</code> script's <code>euler_integration()</code> function,
+just refactored into a <code>euler_step(z, u, dt)</code> function:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">euler_step</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">dt</span><span class="p">):</span>
+    <span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">theta0</span> <span class="o">=</span> <span class="n">z</span>
+    <span class="n">v</span><span class="p">,</span> <span class="n">omega</span> <span class="o">=</span> <span class="n">u</span>
+
+    <span class="n">xdot</span> <span class="o">=</span> <span class="n">v</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta0</span><span class="p">)</span>
+    <span class="n">ydot</span> <span class="o">=</span> <span class="n">v</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta0</span><span class="p">)</span>
+    <span class="n">thetadot</span> <span class="o">=</span> <span class="n">omega</span>
+
+    <span class="n">x1</span> <span class="o">=</span> <span class="n">x0</span> <span class="o">+</span> <span class="n">xdot</span> <span class="o">*</span> <span class="n">dt</span>
+    <span class="n">y1</span> <span class="o">=</span> <span class="n">y0</span> <span class="o">+</span> <span class="n">ydot</span> <span class="o">*</span> <span class="n">dt</span>
+    <span class="n">theta1</span> <span class="o">=</span> <span class="n">theta0</span> <span class="o">+</span> <span class="n">thetadot</span> <span class="o">*</span> <span class="n">dt</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">theta1</span><span class="p">]</span>
+</code></pre></div>
+<p><strong><code>sim_node.py</code></strong> wraps that in ROS: a subscriber updates the commanded
+<code>[v, omega]</code> whenever <code>/cmd_vel</code> arrives, and a <em>separate</em> timer calls
+<code>euler_step</code> every <code>dt</code> seconds using whatever the latest command was:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_cmd_vel_cb</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">Twist</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_u</span> <span class="o">=</span> <span class="p">[</span><span class="n">msg</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">msg</span><span class="o">.</span><span class="n">angular</span><span class="o">.</span><span class="n">z</span><span class="p">]</span>        <span class="c1"># just caches it</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                                    <span class="c1"># runs every dt seconds</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_z</span> <span class="o">=</span> <span class="n">euler_step</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_z</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_u</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dt</span><span class="p">)</span>
+    <span class="o">...</span><span class="n">publish</span> <span class="bp">self</span><span class="o">.</span><span class="n">_z</span> <span class="k">as</span> <span class="n">Pose2D</span> <span class="n">on</span> <span class="s1">&#39;pose&#39;</span><span class="o">...</span>
+</code></pre></div>
+<p>There's no loop connecting these two — <code>rclpy.spin()</code>'s executor calls
+whichever callback is ready (a new message, or the timer firing) and
+that's the whole "cycle."</p>
+<p><strong><code>viz_node.py</code></strong> subscribes to <code>/pose</code> and redraws on every message,
+same circle-plus-heading-line drawing as the original script's
+<code>animate()</code>, just triggered by messages instead of a precomputed array.</p>
+<h2 id="2-run-it">2. Run it<a class="headerlink" href="#2-run-it" title="Permanent link">&para;</a></h2>
+<h3 id="stage-1-pose-no-motion-2-terminals">Stage 1 — pose, no motion (2 terminals)<a class="headerlink" href="#stage-1-pose-no-motion-2-terminals" title="Permanent link">&para;</a></h3>
+<p><strong>Terminal 1:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>/opt/ros/<span class="nv">$ROS_DISTRO</span>/setup.bash
+<span class="nb">source</span><span class="w"> </span>~/ros2_ws/install/setup.bash
+ros2<span class="w"> </span>run<span class="w"> </span>ddrive<span class="w"> </span>ddrive_sim
+</code></pre></div>
+<p>Override the initial pose to prove it's a real parameter, not hard-coded:</p>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>run<span class="w"> </span>ddrive<span class="w"> </span>ddrive_sim<span class="w"> </span>--ros-args<span class="w"> </span>-p<span class="w"> </span>x0:<span class="o">=</span><span class="m">1</span>.0<span class="w"> </span>-p<span class="w"> </span>y0:<span class="o">=</span>-0.5<span class="w"> </span>-p<span class="w"> </span>theta0:<span class="o">=</span><span class="m">1</span>.5708
+</code></pre></div>
+<p><strong>Terminal 2:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>/opt/ros/<span class="nv">$ROS_DISTRO</span>/setup.bash
+<span class="nb">source</span><span class="w"> </span>~/ros2_ws/install/setup.bash
+ros2<span class="w"> </span>run<span class="w"> </span>ddrive<span class="w"> </span>ddrive_viz
+</code></pre></div>
+<p>A matplotlib window opens with the robot sitting still at whatever pose
+you set in Terminal 1.</p>
+<h3 id="stage-2-command-it-3rd-terminal">Stage 2 — command it (3rd terminal)<a class="headerlink" href="#stage-2-command-it-3rd-terminal" title="Permanent link">&para;</a></h3>
+<p>Keep Terminals 1–2 running.</p>
+<p><strong>Terminal 3:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>/opt/ros/<span class="nv">$ROS_DISTRO</span>/setup.bash
+<span class="nb">source</span><span class="w"> </span>~/ros2_ws/install/setup.bash
+ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/cmd_vel<span class="w"> </span>geometry_msgs/msg/Twist<span class="w"> </span><span class="s2">&quot;{linear: {x: 0.3}, angular: {z: 0.2}}&quot;</span><span class="w"> </span>-r<span class="w"> </span><span class="m">10</span>
+</code></pre></div>
+<p>Watch the plot window — the robot curves immediately. Ctrl+C, then stop
+it properly (it keeps the last command it received otherwise):</p>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/cmd_vel<span class="w"> </span>geometry_msgs/msg/Twist<span class="w"> </span><span class="s2">&quot;{linear: {x: 0.0}, angular: {z: 0.0}}&quot;</span><span class="w"> </span>-1
+</code></pre></div>
+<p>When you Ctrl+C <code>ddrive_viz</code>, it saves the trail to
+<code>ddrive_trajectory.png</code> in its working directory.</p>
+<h3 id="stage-3-collapse-into-a-launch-file">Stage 3 — collapse into a launch file<a class="headerlink" href="#stage-3-collapse-into-a-launch-file" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>launch<span class="w"> </span>ddrive<span class="w"> </span>ddrive_launch.py
+</code></pre></div>
+<p>Same two nodes, one command. Overridable arguments:</p>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>launch<span class="w"> </span>ddrive<span class="w"> </span>ddrive_launch.py<span class="w"> </span>x0:<span class="o">=</span><span class="m">1</span>.0<span class="w"> </span>theta0:<span class="o">=</span><span class="m">1</span>.5708<span class="w"> </span>dt:<span class="o">=</span><span class="m">0</span>.05<span class="w"> </span>robot_radius:<span class="o">=</span><span class="m">0</span>.3
+</code></pre></div>
+<h2 id="3-look-at-the-graph-nodes-and-topics">3. Look at the graph — nodes and topics<a class="headerlink" href="#3-look-at-the-graph-nodes-and-topics" title="Permanent link">&para;</a></h2>
+<p>With sim + viz running:</p>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>node<span class="w"> </span>list
+ros2<span class="w"> </span>node<span class="w"> </span>info<span class="w"> </span>/ddrive_sim
+ros2<span class="w"> </span>topic<span class="w"> </span>list
+ros2<span class="w"> </span>topic<span class="w"> </span>info<span class="w"> </span>/cmd_vel<span class="w"> </span>--verbose
+ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>/pose
+ros2<span class="w"> </span>topic<span class="w"> </span>hz<span class="w"> </span>/pose
+</code></pre></div>
+<p><code>node info</code> on <code>/ddrive_sim</code> shows it subscribing to <code>/cmd_vel</code> and
+publishing <code>/pose</code>. If <code>rqt_graph</code> is installed, this draws the same
+picture live:</p>
+<div class="highlight"><pre><span></span><code>rqt_graph
+</code></pre></div>
+<h2 id="4-change-how-fast-it-moves">4. Change how fast it moves<a class="headerlink" href="#4-change-how-fast-it-moves" title="Permanent link">&para;</a></h2>
+<p>Any of these on <code>/cmd_vel</code> changes the motion in real time (with
+<code>ddrive_sim</code> + <code>ddrive_viz</code> running):</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># straight line</span>
+ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/cmd_vel<span class="w"> </span>geometry_msgs/msg/Twist<span class="w"> </span><span class="s2">&quot;{linear: {x: 0.5}}&quot;</span><span class="w"> </span>-r<span class="w"> </span><span class="m">10</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># spin in place</span>
+ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/cmd_vel<span class="w"> </span>geometry_msgs/msg/Twist<span class="w"> </span><span class="s2">&quot;{angular: {z: 1.0}}&quot;</span><span class="w"> </span>-r<span class="w"> </span><span class="m">10</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># arc</span>
+ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/cmd_vel<span class="w"> </span>geometry_msgs/msg/Twist<span class="w"> </span><span class="s2">&quot;{linear: {x: 0.4}, angular: {z: 0.5}}&quot;</span><span class="w"> </span>-r<span class="w"> </span><span class="m">10</span>
+</code></pre></div>
+<p><code>-r 10</code> repeats at 10 Hz; <code>-1</code> publishes once and exits.</p>
+<h2 id="5-parameters-more-than-one-way-to-set-them">5. Parameters — more than one way to set them<a class="headerlink" href="#5-parameters-more-than-one-way-to-set-them" title="Permanent link">&para;</a></h2>
+<p>Using <code>robot_radius</code> (a <code>ddrive_viz</code> parameter) as the running example:</p>
+<p><strong>Code default</strong>, in <code>viz_node.py</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="bp">self</span><span class="o">.</span><span class="n">declare_parameter</span><span class="p">(</span><span class="s1">&#39;robot_radius&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>CLI override at startup:</strong></p>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>run<span class="w"> </span>ddrive<span class="w"> </span>ddrive_viz<span class="w"> </span>--ros-args<span class="w"> </span>-p<span class="w"> </span>robot_radius:<span class="o">=</span><span class="m">0</span>.2
+</code></pre></div>
+<p><strong>YAML file</strong> (<code>config/params.yaml</code>, installed to the package share dir):</p>
+<div class="highlight"><pre><span></span><code><span class="nt">ddrive_viz</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">ros__parameters</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">robot_radius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.2</span>
+<span class="w">    </span><span class="nt">axis_limit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.0</span>
+<span class="w">    </span><span class="nt">save_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ddrive_trajectory.png</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>run<span class="w"> </span>ddrive<span class="w"> </span>ddrive_viz<span class="w"> </span>--ros-args<span class="w"> </span>--params-file<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>~/ros2_ws/install/ddrive/share/ddrive/config/params.yaml
+</code></pre></div>
+<p><strong>Launch argument:</strong></p>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>launch<span class="w"> </span>ddrive<span class="w"> </span>ddrive_launch.py<span class="w"> </span>robot_radius:<span class="o">=</span><span class="m">0</span>.3
+</code></pre></div>
+<p><strong>Live, while the node is running</strong> — this needs the node to register a
+callback, or <code>ros2 param set</code> silently changes the stored value without
+changing behavior:</p>
+<div class="highlight"><pre><span></span><code><span class="bp">self</span><span class="o">.</span><span class="n">add_on_set_parameters_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_param_change</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_on_param_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;robot_radius&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_R</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">value</span>
+        <span class="c1"># ...</span>
+    <span class="k">return</span> <span class="n">SetParametersResult</span><span class="p">(</span><span class="n">successful</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>param<span class="w"> </span>get<span class="w"> </span>/ddrive_viz<span class="w"> </span>robot_radius
+ros2<span class="w"> </span>param<span class="w"> </span><span class="nb">set</span><span class="w"> </span>/ddrive_viz<span class="w"> </span>robot_radius<span class="w"> </span><span class="m">0</span>.4
+</code></pre></div>
+<p><code>ddrive_viz</code> has this callback wired up, so the circle resizes on the
+next redraw. <code>ddrive_sim</code>'s <code>dt</code> does <strong>not</strong> have one — try
+<code>ros2 param set /ddrive_sim dt 0.02</code> and notice the timer's rate doesn't
+actually change. Worth demonstrating both, back to back.</p>
+<h2 id="6-whats-next">6. What's next<a class="headerlink" href="#6-whats-next" title="Permanent link">&para;</a></h2>
+<p><code>ddrive_ik</code> builds directly on top of this package — same <code>ddrive_sim</code>
+and <code>ddrive_viz</code>, unmodified, with two new nodes added to close a
+tracking control loop. See the next page.</p>
+<p><code>ddrive_sim</code> also now has a <code>ResetPose</code> <strong>service</strong> — see
+<a href="../2.4_ddrive_ik_msgs/#part-3-using-them-resetpose-ddrive-and-tracktrajectory-ddrive_ik">Part 3 of the ddrive_ik_msgs page</a>
+for the server code, the terminal client, and how to call it.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../2.1_fundamentals/" class="btn btn-neutral float-left" title="2.1 Fundamentals"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../2.3_ddrive_ik/" class="btn btn-neutral float-right" title="2.3 ddrive_ik">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../2.1_fundamentals/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../2.3_ddrive_ik/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../javascripts/copy-code.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
