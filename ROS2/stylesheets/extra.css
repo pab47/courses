@@ -1,0 +1,33 @@
+div.highlight {
+  position: relative;
+}
+
+.copy-code-button {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: #ddd;
+  background: #333;
+  border: 1px solid #555;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s ease-in-out;
+}
+
+div.highlight:hover .copy-code-button {
+  opacity: 1;
+}
+
+.copy-code-button:hover {
+  background: #444;
+}
+
+.copy-code-button.copied {
+  background: #2e7d32;
+  color: #fff;
+  border-color: #2e7d32;
+}

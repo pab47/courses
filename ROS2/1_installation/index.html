@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Your Name" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>1. Installation - ROS 2 Tutorial</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../stylesheets/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "1. Installation";
+        var mkdocs_page_input_path = "1_installation.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/xml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/cmake.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> ROS 2 Tutorial
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../0_motivation/">Motivation</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">1. Installation</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#11-install-docker">1.1 Install Docker</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#ubuntu-or-any-linux-host">Ubuntu (or any Linux host)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#macos">macOS</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#windows">Windows</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#12-pull-the-image-and-create-the-container">1.2 Pull the image and create the container</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#log-into-the-ubuntu-desktop">Log into the Ubuntu desktop</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#where-ros2_ws-actually-lives">Where ~/ros2_ws actually lives</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#everyday-startup-after-the-first-time">Everyday startup (after the first time)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#13-set-ros_distro-and-verify-ros-2-works">1.3 Set $ROS_DISTRO and verify ROS 2 works</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#verify-talker-listener">Verify: talker / listener</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#matplotlibnumpy-only-if-a-node-needs-them">matplotlib/numpy (only if a node needs them)</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. ROS2 Basics with ddrive</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../2_ros2_basics/2.1_fundamentals/">2.1 Fundamentals</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2_ros2_basics/2.2_theory_ddrive/">2.2 Theory - ddrive</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2_ros2_basics/2.3_ddrive/">2.3 ddrive</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2_ros2_basics/2.4_ddrive_ik/">2.4 ddrive_ik</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2_ros2_basics/2.5_ddrive_ik_msgs/">2.5 ddrive_ik_msgs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2_ros2_basics/2.6_exercise_mecanum/">2.6 Exercise - Mecanum Car</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3. RViz Basics with twolink</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../3_rviz_basics/3.1_theory_twolink/">3.1 Theory - twolink</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3_rviz_basics/3.2_twolink/">3.2 twolink</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3_rviz_basics/3.3_twolink_ik/">3.3 twolink_ik</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3_rviz_basics/3.4_exercise_threelink_ik/">3.4 Exercise - threelink_ik</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4. Gazebo Basics with dbpendulum</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../4_gazebo_basics/4.1_theory_dbpendulum/">4.1 Theory - dbpendulum</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../4_gazebo_basics/4.2_dbpendulum/">4.2 dbpendulum</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../4_gazebo_basics/4.3_dbpendulum_ctrl/">4.3 dbpendulum_ctrl</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../4_gazebo_basics/4.4_exercise_single_pendulum/">4.4 Exercise - Single Pendulum</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">ROS 2 Tutorial</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">1. Installation</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h1>
+<p>This site uses <strong>Docker</strong> on every host OS — Ubuntu, macOS, and Windows —
+instead of installing ROS 2 directly on your machine. The reason is
+version control: your host OS might not match a given ROS 2 release
+(Ubuntu 20.04 can't run Jazzy natively, for example), but a Docker image
+gives you exactly the ROS 2 distro you want, independent of what your
+host is running.</p>
+<p>Every command on this site sources ROS 2 via <code>$ROS_DISTRO</code> instead of a
+hardcoded name like <code>foxy</code> or <code>jazzy</code>, so the exact same commands work no
+matter which distro's image you're running. You'll set this once inside
+the container, in <a href="#13-set-ros_distro-and-verify-ros-2-works">1.3</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>/opt/ros/<span class="nv">$ROS_DISTRO</span>/setup.bash
+</code></pre></div>
+<p>and, once you've built at least one package:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>~/ros2_ws/install/setup.bash
+</code></pre></div>
+<hr />
+<h2 id="11-install-docker">1.1 Install Docker<a class="headerlink" href="#11-install-docker" title="Permanent link">&para;</a></h2>
+<p>Pick your host OS below. All three converge on the same checkpoint: a
+working <code>docker</code> command.</p>
+<h3 id="ubuntu-or-any-linux-host">Ubuntu (or any Linux host)<a class="headerlink" href="#ubuntu-or-any-linux-host" title="Permanent link">&para;</a></h3>
+<p>Docker Engine installs directly — no VM layer needed:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>ca-certificates<span class="w"> </span>curl<span class="w"> </span>gnupg
+sudo<span class="w"> </span>install<span class="w"> </span>-m<span class="w"> </span><span class="m">0755</span><span class="w"> </span>-d<span class="w"> </span>/etc/apt/keyrings
+curl<span class="w"> </span>-fsSL<span class="w"> </span>https://download.docker.com/linux/ubuntu/gpg<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>gpg<span class="w"> </span>--dearmor<span class="w"> </span>-o<span class="w"> </span>/etc/apt/keyrings/docker.gpg
+<span class="nb">echo</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s2">&quot;deb [arch=</span><span class="k">$(</span>dpkg<span class="w"> </span>--print-architecture<span class="k">)</span><span class="s2"> signed-by=/etc/apt/keyrings/docker.gpg] \</span>
+<span class="s2">  https://download.docker.com/linux/ubuntu </span><span class="k">$(</span>.<span class="w"> </span>/etc/os-release<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$VERSION_CODENAME</span><span class="s2">&quot;</span><span class="k">)</span><span class="s2"> stable&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/docker.list<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>docker-ce<span class="w"> </span>docker-ce-cli<span class="w"> </span>containerd.io
+sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>docker<span class="w"> </span><span class="nv">$USER</span>
+</code></pre></div>
+<p>Log out and back in (or reboot) so your user picks up the <code>docker</code>
+group, then confirm:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>hello-world
+</code></pre></div>
+<h3 id="macos">macOS<a class="headerlink" href="#macos" title="Permanent link">&para;</a></h3>
+<p>Install <a href="https://www.docker.com/products/docker-desktop/">Docker Desktop for Mac</a>
+— download the <code>.dmg</code>, drag it into Applications, and launch it once to
+finish setup.</p>
+<div class="admonition note">
+<p class="admonition-title">Apple Silicon (M1/M2/M3/M4)</p>
+<p>If you're on an Apple Silicon Mac, you'll confirm you're pulling a
+<strong>native arm64</strong> image later, in
+<a href="#12-pull-the-image-and-create-the-container">1.2</a> — an emulated
+(x86_64) image runs noticeably slower. This check does <strong>not</strong>
+apply to Intel Macs, which only ever pull native x86_64 images.</p>
+</div>
+<p>Confirm Docker is working:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>hello-world
+</code></pre></div>
+<h3 id="windows">Windows<a class="headerlink" href="#windows" title="Permanent link">&para;</a></h3>
+<p>Docker Desktop on Windows needs WSL2 (Windows Subsystem for Linux) as
+its backend — which conveniently also gives you a real Ubuntu shell, so
+every <code>bash</code> command on this site works unmodified.</p>
+<ol>
+<li>Open PowerShell <strong>as Administrator</strong> and run:
+   <div class="highlight"><pre><span></span><code><span class="n">wsl</span> <span class="p">-</span><span class="n">-install</span>
+</code></pre></div>
+   Reboot when prompted. This installs WSL2 and a default Ubuntu distro.</li>
+<li>Install <a href="https://www.docker.com/products/docker-desktop/">Docker Desktop for Windows</a>.
+   During setup, make sure <strong>"Use WSL 2 based engine"</strong> is checked
+   (this is the default on modern installs).</li>
+<li>In Docker Desktop, go to <strong>Settings → Resources → WSL Integration</strong>
+   and enable integration with your Ubuntu distro. Restart Docker
+   Desktop.</li>
+<li>Open the <strong>Ubuntu</strong> app from the Start Menu — this is your WSL2
+   terminal.</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Run every command on this site from the Ubuntu (WSL2) terminal</p>
+<p>Not PowerShell, not Command Prompt. From here on, <code>~/ros2_ws</code> means
+your WSL2 Ubuntu home directory, and every command on this site
+behaves exactly as written for Mac/Linux.</p>
+</div>
+<p>From the Ubuntu terminal, confirm Docker is reachable:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>hello-world
+</code></pre></div>
+<hr />
+<h2 id="12-pull-the-image-and-create-the-container">1.2 Pull the image and create the container<a class="headerlink" href="#12-pull-the-image-and-create-the-container" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>tiryoh/ros2-desktop-vnc:jazzy
+</code></pre></div>
+<p>Swap <code>jazzy</code> for whichever ROS 2 distro you want — check available tags
+at <a href="https://hub.docker.com/r/tiryoh/ros2-desktop-vnc/tags">hub.docker.com/r/tiryoh/ros2-desktop-vnc/tags</a>.
+Whatever you pick here is also what you'll set <code>$ROS_DISTRO</code> to in
+<a href="#13-set-ros_distro-and-verify-ros-2-works">1.3</a> — keep the two in sync.</p>
+<div class="admonition note">
+<p class="admonition-title">Apple Silicon: confirm it's native arm64</p>
+<p><div class="highlight"><pre><span></span><code>docker<span class="w"> </span>image<span class="w"> </span>inspect<span class="w"> </span>tiryoh/ros2-desktop-vnc:jazzy<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>Architecture
+</code></pre></div>
+should print <code>"Architecture": "arm64"</code>.</p>
+</div>
+<p>Create a folder that will become your ROS 2 workspace, then start the
+container:</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>~/ros2_ws/src
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>ros2_jazzy<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--shm-size<span class="o">=</span>512m<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">6080</span>:80<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>~/ros2_ws:/home/ubuntu/ros2_ws<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">VNC_PASSWORD</span><span class="o">=</span>ubuntu<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>tiryoh/ros2-desktop-vnc:jazzy
+</code></pre></div>
+<p>Naming the container <code>ros2_jazzy</code> (rather than after any one package)
+keeps it obvious which ROS 2 distro it's running — rename it to match
+if you pull a different distro's image, e.g. <code>ros2_humble</code>.</p>
+<h3 id="log-into-the-ubuntu-desktop">Log into the Ubuntu desktop<a class="headerlink" href="#log-into-the-ubuntu-desktop" title="Permanent link">&para;</a></h3>
+<p>Open <strong><code>http://localhost:6080</code></strong> in a browser. You'll land on a VNC
+password prompt — enter <code>ubuntu</code> (the password set above). You should
+land on a full Ubuntu desktop with a terminal on the taskbar. Everything
+else on this site — every <code>ros2 run</code>, every <code>colcon build</code> — happens in
+terminals opened from that desktop, not in your host OS's own terminal.</p>
+<h3 id="where-ros2_ws-actually-lives">Where <code>~/ros2_ws</code> actually lives<a class="headerlink" href="#where-ros2_ws-actually-lives" title="Permanent link">&para;</a></h3>
+<p>The <code>-v ~/ros2_ws:/home/ubuntu/ros2_ws</code> flag maps one real folder on
+your host to a path inside the container:</p>
+<table>
+<thead>
+<tr>
+<th>On your host</th>
+<th>Inside the container</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>~/ros2_ws</code> (Mac/Linux), or your WSL2 Ubuntu <code>~/ros2_ws</code> (Windows)</td>
+<td><code>/home/ubuntu/ros2_ws</code></td>
+</tr>
+</tbody>
+</table>
+<p>The container's user is <code>ubuntu</code>, whose home directory <em>is</em>
+<code>/home/ubuntu</code> — so <code>/home/ubuntu/ros2_ws</code> is also just <code>~/ros2_ws</code> from
+a terminal inside the container. In other words, <code>~/ros2_ws</code> means the
+exact same folder whether you type it on your host or in a VNC desktop
+terminal — they're not two copies, they're one folder viewed from two
+places. Anything you <code>colcon build</code> inside the container (<code>build/</code>,
+<code>install/</code>, <code>log/</code>) is written straight onto your host's disk, and any
+file you drop into <code>~/ros2_ws</code> on your host shows up instantly inside
+the container.</p>
+<p>This is also why your workspace survives even if you delete the
+container entirely — the folder was never inside the container to
+begin with.</p>
+<h3 id="everyday-startup-after-the-first-time">Everyday startup (after the first time)<a class="headerlink" href="#everyday-startup-after-the-first-time" title="Permanent link">&para;</a></h3>
+<p>You only need to <code>docker run</code> once. After that:</p>
+<p><div class="highlight"><pre><span></span><code>docker<span class="w"> </span>start<span class="w"> </span>ros2_jazzy
+</code></pre></div>
+then back to <code>http://localhost:6080</code>. Whatever you installed inside the
+container earlier — including the <a href="#matplotlibnumpy-only-if-a-node-needs-them">optional matplotlib/numpy
+setup</a> below — is still
+there, since <code>docker start</code> reuses the same container rather than
+creating a new one.</p>
+<p>To stop it when you're done for the day:
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>stop<span class="w"> </span>ros2_jazzy
+</code></pre></div></p>
+<p>If you ever need to start completely fresh (wipes anything installed
+inside the container, but never touches <code>~/ros2_ws</code> on your host):
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>ros2_jazzy
+<span class="c1"># then re-run the docker run command above</span>
+</code></pre></div></p>
+<hr />
+<h2 id="13-set-ros_distro-and-verify-ros-2-works">1.3 Set <code>$ROS_DISTRO</code> and verify ROS 2 works<a class="headerlink" href="#13-set-ros_distro-and-verify-ros-2-works" title="Permanent link">&para;</a></h2>
+<p>Inside the container's desktop terminal:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export ROS_DISTRO=jazzy&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc<span class="w">   </span><span class="c1"># match whatever distro you pulled in 1.2</span>
+<span class="nb">source</span><span class="w"> </span>~/.bashrc
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$ROS_DISTRO</span>
+</code></pre></div>
+<p>That last line should print your distro name back. From now on, every
+terminal on this site starts the same way:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>/opt/ros/<span class="nv">$ROS_DISTRO</span>/setup.bash
+</code></pre></div>
+<h3 id="verify-talker-listener">Verify: talker / listener<a class="headerlink" href="#verify-talker-listener" title="Permanent link">&para;</a></h3>
+<p>The real test that ROS 2 is alive isn't that the commands exist — it's
+that two independent nodes can actually publish and subscribe to each
+other. Open two terminals inside the container's desktop.</p>
+<p><strong>Terminal 1:</strong>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>/opt/ros/<span class="nv">$ROS_DISTRO</span>/setup.bash
+ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_cpp<span class="w"> </span>talker
+</code></pre></div></p>
+<p><strong>Terminal 2:</strong>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>/opt/ros/<span class="nv">$ROS_DISTRO</span>/setup.bash
+ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_py<span class="w"> </span>listener
+</code></pre></div></p>
+<p>Terminal 1 should print <code>Publishing: 'Hello World: N'</code> once a second,
+and Terminal 2 should print <code>I heard: [Hello World: N]</code> right behind
+it. Ctrl+C both once you've seen it work.</p>
+<p>Once you've built at least one workspace package (starting on the next
+page), every terminal also needs:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>~/ros2_ws/install/setup.bash
+</code></pre></div>
+<hr />
+<h2 id="matplotlibnumpy-only-if-a-node-needs-them">matplotlib/numpy (only if a node needs them)<a class="headerlink" href="#matplotlibnumpy-only-if-a-node-needs-them" title="Permanent link">&para;</a></h2>
+<p>Not every package on this site needs these — install them inside the
+container only when a node actually imports them (e.g. <code>ddrive</code>'s
+visualizer node):</p>
+<div class="highlight"><pre><span></span><code>pip3<span class="w"> </span>install<span class="w"> </span>matplotlib<span class="w"> </span>numpy<span class="w"> </span>--break-system-packages
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">NumPy/matplotlib version mismatch</p>
+<p>On newer Ubuntu/ROS combinations, a pip-installed NumPy 2.x can
+conflict with an apt-installed matplotlib built against NumPy 1.x,
+causing an <code>ImportError</code> when a node imports matplotlib. If you hit
+this, either pin NumPy down:
+<div class="highlight"><pre><span></span><code>pip3<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;numpy&lt;2&quot;</span><span class="w"> </span>--break-system-packages<span class="w"> </span>--force-reinstall
+</code></pre></div>
+or use apt for both instead of pip:
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>python3-matplotlib<span class="w"> </span>python3-numpy
+</code></pre></div></p>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../0_motivation/" class="btn btn-neutral float-left" title="Motivation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../2_ros2_basics/2.1_fundamentals/" class="btn btn-neutral float-right" title="2.1 Fundamentals">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../0_motivation/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../2_ros2_basics/2.1_fundamentals/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../javascripts/copy-code.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

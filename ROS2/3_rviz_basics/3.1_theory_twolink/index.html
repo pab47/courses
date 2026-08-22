@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Your Name" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>3.1 Theory - twolink - ROS 2 Tutorial</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../stylesheets/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "3.1 Theory - twolink";
+        var mkdocs_page_input_path = "3_rviz_basics/3.1_theory_twolink.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/xml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/cmake.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> ROS 2 Tutorial
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../0_motivation/">Motivation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../1_installation/">1. Installation</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. ROS2 Basics with ddrive</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2_ros2_basics/2.1_fundamentals/">2.1 Fundamentals</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2_ros2_basics/2.2_theory_ddrive/">2.2 Theory - ddrive</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2_ros2_basics/2.3_ddrive/">2.3 ddrive</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2_ros2_basics/2.4_ddrive_ik/">2.4 ddrive_ik</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2_ros2_basics/2.5_ddrive_ik_msgs/">2.5 ddrive_ik_msgs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2_ros2_basics/2.6_exercise_mecanum/">2.6 Exercise - Mecanum Car</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3. RViz Basics with twolink</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">3.1 Theory - twolink</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#lec04-forward-kinematics-of-a-2-link-manipulator">Lec04 — Forward Kinematics of a 2-Link Manipulator</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#lec05-inverse-kinematics-of-a-2d-manipulator">Lec05 — Inverse Kinematics of a 2D Manipulator</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3.2_twolink/">3.2 twolink</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3.3_twolink_ik/">3.3 twolink_ik</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3.4_exercise_threelink_ik/">3.4 Exercise - threelink_ik</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4. Gazebo Basics with dbpendulum</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4_gazebo_basics/4.1_theory_dbpendulum/">4.1 Theory - dbpendulum</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4_gazebo_basics/4.2_dbpendulum/">4.2 dbpendulum</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4_gazebo_basics/4.3_dbpendulum_ctrl/">4.3 dbpendulum_ctrl</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4_gazebo_basics/4.4_exercise_single_pendulum/">4.4 Exercise - Single Pendulum</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">ROS 2 Tutorial</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">3. RViz Basics with twolink</li>
+      <li class="breadcrumb-item active">3.1 Theory - twolink</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="31-theory-twolink">3.1 Theory: twolink<a class="headerlink" href="#31-theory-twolink" title="Permanent link">&para;</a></h1>
+<p>The next two packages, <a href="../3.2_twolink/">3.2 twolink</a> and
+<a href="../3.3_twolink_ik/">3.3 twolink_ik</a>, are ROS 2 wrappers around math
+taught in Lec04 and Lec05 of
+<a href="https://tiny.cc/robotics24">tiny.cc/robotics24</a>. Watch these first — the
+ROS 2 code on the following pages will make a lot more sense once you've
+seen the plain-Python version of the same equations.</p>
+<h2 id="lec04-forward-kinematics-of-a-2-link-manipulator">Lec04 — Forward Kinematics of a 2-Link Manipulator<a class="headerlink" href="#lec04-forward-kinematics-of-a-2-link-manipulator" title="Permanent link">&para;</a></h2>
+<p><a href="../3.2_twolink/">3.2 twolink</a> doesn't run any FK code of its own —
+<code>robot_state_publisher</code> and tf2 compute it for you from the URDF's joint
+angles and link lengths (<code>l1</code>, <code>l2</code>). Lec04 derives that same
+forward-kinematics chain by hand: two rotation-and-translation steps, one
+per revolute joint, composed to get the end-effector position. Worth
+watching before <code>twolink_ik</code>, since the inverse-kinematics solve there
+builds directly on this forward map.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Applies to</td>
+<td><a href="../3.2_twolink/">3.2 twolink</a></td>
+</tr>
+<tr>
+<td>Video</td>
+<td><a href="https://youtu.be/Fe31IBQMZI8">youtu.be/Fe31IBQMZI8</a></td>
+</tr>
+<tr>
+<td>PDF</td>
+<td><a href="https://pab47.github.io/robotics/f24/Lectures/Lec04_forward_kinematics.pdf">Lec04 slides</a></td>
+</tr>
+<tr>
+<td>Code</td>
+<td><a href="https://pab47.github.io/robotics/f24/Python/Lec04_forward_kinematics.zip">Lec04 Python</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="lec05-inverse-kinematics-of-a-2d-manipulator">Lec05 — Inverse Kinematics of a 2D Manipulator<a class="headerlink" href="#lec05-inverse-kinematics-of-a-2d-manipulator" title="Permanent link">&para;</a></h2>
+<p><code>twolink_ik</code>'s <code>kinematics.py</code> (<code>inverse_kinematics()</code>) is the same
+numerical solve taught in Lec05: given a target <code>(x_ref, y_ref)</code>, use
+<code>forward_kinematics()</code> inside a root-finder (<code>fsolve</code>) to search for the
+joint angles <code>(theta1, theta2)</code> that reach it, rather than deriving a
+closed-form solution. <code>ik_node</code> just runs that solve once at startup
+instead of interactively, as the lecture's script does.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Applies to</td>
+<td><a href="../3.3_twolink_ik/">3.3 twolink_ik</a></td>
+</tr>
+<tr>
+<td>Video</td>
+<td><a href="https://youtu.be/KcPieZn77t4">youtu.be/KcPieZn77t4</a></td>
+</tr>
+<tr>
+<td>PDF</td>
+<td><a href="https://pab47.github.io/robotics/f24/Lectures/Lec05_inverse_kinematics.pdf">Lec05 slides</a></td>
+</tr>
+<tr>
+<td>Code</td>
+<td><a href="https://pab47.github.io/robotics/f24/Python/Lec05_inverse_kinematics.zip">Lec05 Python</a></td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../2_ros2_basics/2.6_exercise_mecanum/" class="btn btn-neutral float-left" title="2.6 Exercise - Mecanum Car"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../3.2_twolink/" class="btn btn-neutral float-right" title="3.2 twolink">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../2_ros2_basics/2.6_exercise_mecanum/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../3.2_twolink/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../javascripts/copy-code.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

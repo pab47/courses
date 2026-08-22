@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Your Name" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>2.2 Theory - ddrive - ROS 2 Tutorial</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../stylesheets/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "2.2 Theory - ddrive";
+        var mkdocs_page_input_path = "2_ros2_basics/2.2_theory_ddrive.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/xml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/cmake.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> ROS 2 Tutorial
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../0_motivation/">Motivation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../1_installation/">1. Installation</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. ROS2 Basics with ddrive</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../2.1_fundamentals/">2.1 Fundamentals</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">2.2 Theory - ddrive</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#lec06-differential-drive-forward-kinematics">Lec06 — Differential Drive Forward Kinematics</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#lec07-inverse-kinematics-of-a-differential-drive-car">Lec07 — Inverse Kinematics of a Differential Drive Car</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2.3_ddrive/">2.3 ddrive</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2.4_ddrive_ik/">2.4 ddrive_ik</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2.5_ddrive_ik_msgs/">2.5 ddrive_ik_msgs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2.6_exercise_mecanum/">2.6 Exercise - Mecanum Car</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3. RViz Basics with twolink</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3_rviz_basics/3.1_theory_twolink/">3.1 Theory - twolink</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3_rviz_basics/3.2_twolink/">3.2 twolink</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3_rviz_basics/3.3_twolink_ik/">3.3 twolink_ik</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3_rviz_basics/3.4_exercise_threelink_ik/">3.4 Exercise - threelink_ik</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4. Gazebo Basics with dbpendulum</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4_gazebo_basics/4.1_theory_dbpendulum/">4.1 Theory - dbpendulum</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4_gazebo_basics/4.2_dbpendulum/">4.2 dbpendulum</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4_gazebo_basics/4.3_dbpendulum_ctrl/">4.3 dbpendulum_ctrl</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4_gazebo_basics/4.4_exercise_single_pendulum/">4.4 Exercise - Single Pendulum</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">ROS 2 Tutorial</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">2. ROS2 Basics with ddrive</li>
+      <li class="breadcrumb-item active">2.2 Theory - ddrive</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="22-theory-ddrive">2.2 Theory: ddrive<a class="headerlink" href="#22-theory-ddrive" title="Permanent link">&para;</a></h1>
+<p>The next two packages, <a href="../2.3_ddrive/">2.3 ddrive</a> and
+<a href="../2.4_ddrive_ik/">2.4 ddrive_ik</a> (plus the services/actions layered on
+top in <a href="../2.5_ddrive_ik_msgs/">2.5 ddrive_ik_msgs</a>), are ROS 2 wrappers
+around math taught in Lec06 and Lec07 of
+<a href="https://tiny.cc/robotics24">tiny.cc/robotics24</a>. Watch these first — the
+ROS 2 code on the following pages will make a lot more sense once you've
+seen the plain-Python version of the same equations.</p>
+<h2 id="lec06-differential-drive-forward-kinematics">Lec06 — Differential Drive Forward Kinematics<a class="headerlink" href="#lec06-differential-drive-forward-kinematics" title="Permanent link">&para;</a></h2>
+<p>The Euler integrator in <code>ddrive</code>'s <code>kinematics.py</code> (<code>euler_step()</code>) is a
+direct port of the forward-kinematics model derived in Lec06: wheel
+velocities become a body-frame <code>(v, omega)</code>, and the pose
+<code>[x, y, theta]</code> evolves by <code>xdot = v*cos(theta)</code>, <code>ydot = v*sin(theta)</code>,
+<code>thetadot = omega</code>. Watch this first if the plot-window motion in
+<a href="../2.3_ddrive/">2.3 ddrive</a> doesn't feel intuitive — it's the same three
+equations, just running once per ROS 2 timer tick instead of once per
+<code>for</code>-loop iteration.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Applies to</td>
+<td><a href="../2.3_ddrive/">2.3 ddrive</a></td>
+</tr>
+<tr>
+<td>Video</td>
+<td><a href="https://youtu.be/lMHMJvBCkVo">youtu.be/lMHMJvBCkVo</a></td>
+</tr>
+<tr>
+<td>PDF</td>
+<td><a href="https://pab47.github.io/robotics/f24/Lectures/Lec06_diff_drive_forward_kinematics.pdf">Lec06 slides</a></td>
+</tr>
+<tr>
+<td>Code</td>
+<td><a href="https://pab47.github.io/robotics/f24/Python/Lec06_diffdrive_forward_kinematics.zip">Lec06 Python</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="lec07-inverse-kinematics-of-a-differential-drive-car">Lec07 — Inverse Kinematics of a Differential Drive Car<a class="headerlink" href="#lec07-inverse-kinematics-of-a-differential-drive-car" title="Permanent link">&para;</a></h2>
+<p><code>ddrive_ik</code>'s <code>feedback_linearize()</code> is the point-offset
+feedback-linearization control law derived in Lec07: a differential-drive
+robot can't move sideways, so you can't command an arbitrary Cartesian
+velocity at its center — but you <em>can</em> at a point <code>P</code> offset from the
+center by <code>(px, py)</code>, by inverting the 2x2 matrix that maps <code>[v, omega]</code>
+to that point's Cartesian velocity. That inversion is exactly the
+<code>a11, a12, a21, a22</code> block in <code>feedback_linearize</code>. The <code>Kp*dt</code> stability
+note on the <a href="../2.4_ddrive_ik/#6-debugging-note-the-instability-and-why">ddrive_ik page</a>
+isn't in the lecture — that's a discretization issue specific to porting
+continuous-time math into a fixed-<code>dt</code> ROS 2 timer.</p>
+<p><code>ddrive_ik_msgs</code> adds no new math on top of this — <code>ResetPose</code> and
+<code>TrackTrajectory</code> are ROS 2 plumbing (a service and an action) wrapped
+around this same tracking control law.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Applies to</td>
+<td><a href="../2.4_ddrive_ik/">2.4 ddrive_ik</a>, <a href="../2.5_ddrive_ik_msgs/">2.5 ddrive_ik_msgs</a></td>
+</tr>
+<tr>
+<td>Video</td>
+<td><a href="https://youtu.be/KJLUlL7a15A">youtu.be/KJLUlL7a15A</a></td>
+</tr>
+<tr>
+<td>PDF</td>
+<td><a href="https://pab47.github.io/robotics/f24/Lectures/Lec07_diff_drive_inverse_kinematics.pdf">Lec07 slides</a></td>
+</tr>
+<tr>
+<td>Code</td>
+<td><a href="https://pab47.github.io/robotics/f24/Python/Lec07_diffdrive_inverse_kinematics.zip">Lec07 Python</a></td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../2.1_fundamentals/" class="btn btn-neutral float-left" title="2.1 Fundamentals"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../2.3_ddrive/" class="btn btn-neutral float-right" title="2.3 ddrive">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../2.1_fundamentals/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../2.3_ddrive/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../javascripts/copy-code.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

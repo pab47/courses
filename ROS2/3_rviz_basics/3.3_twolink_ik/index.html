@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Your Name" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>3.3 twolink_ik - ROS 2 Tutorial</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../stylesheets/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "3.3 twolink_ik";
+        var mkdocs_page_input_path = "3_rviz_basics/3.3_twolink_ik.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/xml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/cmake.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> ROS 2 Tutorial
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../0_motivation/">Motivation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../1_installation/">1. Installation</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2. ROS2 Basics with ddrive</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2_ros2_basics/2.1_fundamentals/">2.1 Fundamentals</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2_ros2_basics/2.2_theory_ddrive/">2.2 Theory - ddrive</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2_ros2_basics/2.3_ddrive/">2.3 ddrive</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2_ros2_basics/2.4_ddrive_ik/">2.4 ddrive_ik</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2_ros2_basics/2.5_ddrive_ik_msgs/">2.5 ddrive_ik_msgs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2_ros2_basics/2.6_exercise_mecanum/">2.6 Exercise - Mecanum Car</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3. RViz Basics with twolink</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../3.1_theory_twolink/">3.1 Theory - twolink</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3.2_twolink/">3.2 twolink</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">3.3 twolink_ik</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#package-layout">Package layout</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#build">Build</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#set-the-target">Set the target</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#run">Run</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#notes">Notes</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3.4_exercise_threelink_ik/">3.4 Exercise - threelink_ik</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4. Gazebo Basics with dbpendulum</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4_gazebo_basics/4.1_theory_dbpendulum/">4.1 Theory - dbpendulum</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4_gazebo_basics/4.2_dbpendulum/">4.2 dbpendulum</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4_gazebo_basics/4.3_dbpendulum_ctrl/">4.3 dbpendulum_ctrl</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4_gazebo_basics/4.4_exercise_single_pendulum/">4.4 Exercise - Single Pendulum</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">ROS 2 Tutorial</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">3. RViz Basics with twolink</li>
+      <li class="breadcrumb-item active">3.3 twolink_ik</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="33-twolink_ik">3.3 twolink_ik<a class="headerlink" href="#33-twolink_ik" title="Permanent link">&para;</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Package download</p>
+<p><a href="https://pab47.github.io/courses/ROS2/downloads/twolink_ik.zip">Download <code>twolink_ik.zip</code></a></p>
+</div>
+<p>Cartesian target tracking: submit <code>x_ref</code>, <code>y_ref</code> via a YAML params file, <code>ik_node</code> solves for the joint angles.</p>
+<div class="admonition info">
+<p class="admonition-title">Theory</p>
+<p>This package implements Lec05 — Inverse Kinematics of a 2D
+Manipulator. See <a href="../3.1_theory_twolink/#lec05-inverse-kinematics-of-a-2d-manipulator">3.1 Theory: twolink</a>
+for the derivation, video, slides, and code.</p>
+</div>
+<h2 id="package-layout">Package layout<a class="headerlink" href="#package-layout" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>twolink_ik/
+├── urdf/
+│   └── twolink.urdf.xacro       # own copy, same geometry as twolink&#39;s
+├── config/
+│   └── twolink_ik_params.yaml   # l1, l2, x_ref, y_ref
+├── launch/
+│   └── twolink_ik.launch.py     # robot_state_publisher + ik_node + rviz
+├── rviz/
+│   └── twolink_ik.rviz
+└── twolink_ik/
+    ├── kinematics.py            # forward_kinematics() + inverse_kinematics()
+    └── ik_node.py                # loads l1, l2, x_ref, y_ref -&gt; solves once -&gt; publishes /joint_states
+</code></pre></div>
+<p><code>ik_node</code> reuses <code>forward_kinematics()</code> inside its <code>fsolve</code> residual — same approach as the original <code>manipulator_inverse.py</code>.</p>
+<h2 id="build">Build<a class="headerlink" href="#build" title="Permanent link">&para;</a></h2>
+<p>Terminal 1:
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>/opt/ros/<span class="nv">$ROS_DISTRO</span>/setup.bash
+<span class="nb">cd</span><span class="w"> </span>~/ros2_ws
+colcon<span class="w"> </span>build<span class="w"> </span>--packages-select<span class="w"> </span>twolink_ik<span class="w"> </span>--symlink-install
+</code></pre></div></p>
+<p><code>--symlink-install</code> means edits to <code>config/twolink_ik_params.yaml</code> take effect on the next <code>ros2 launch</code> without rebuilding.</p>
+<h2 id="set-the-target">Set the target<a class="headerlink" href="#set-the-target" title="Permanent link">&para;</a></h2>
+<p>Edit <code>config/twolink_ik_params.yaml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">/**</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">ros__parameters</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">l1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+<span class="w">    </span><span class="nt">l2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+<span class="w">    </span><span class="nt">x_ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
+<span class="w">    </span><span class="nt">y_ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
+</code></pre></div>
+<h2 id="run">Run<a class="headerlink" href="#run" title="Permanent link">&para;</a></h2>
+<p>Terminal 1:
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>/opt/ros/<span class="nv">$ROS_DISTRO</span>/setup.bash
+<span class="nb">source</span><span class="w"> </span>~/ros2_ws/install/setup.bash
+ros2<span class="w"> </span>launch<span class="w"> </span>twolink_ik<span class="w"> </span>twolink_ik.launch.py
+</code></pre></div></p>
+<p><code>ik_node</code> solves for <code>theta1</code>, <code>theta2</code> at startup, logs the solved angles, and republishes <code>/joint_states</code> continuously so RViz stays in sync. The arm should visibly reach <code>(x_ref, y_ref)</code>.</p>
+<p>To sanity-check the solve against tf2's own FK computation, in a second terminal:</p>
+<p>Terminal 2:
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>/opt/ros/<span class="nv">$ROS_DISTRO</span>/setup.bash
+<span class="nb">source</span><span class="w"> </span>~/ros2_ws/install/setup.bash
+ros2<span class="w"> </span>run<span class="w"> </span>tf2_ros<span class="w"> </span>tf2_echo<span class="w"> </span>base_link<span class="w"> </span>end_effector
+</code></pre></div></p>
+<p>The translation printed there should match <code>(x_ref, y_ref, 0)</code>.</p>
+<h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>No <code>&lt;inertial&gt;</code> or <code>&lt;collision&gt;</code> tags — visualization only, matches the no-dynamics stage before Gazebo/PD control is introduced.</li>
+<li><code>end_effector</code> is a fixed frame at the tip of <code>link2</code>, added so tf2 can be queried directly for the check above.</li>
+<li>If RViz opens without the RobotModel/TF displays configured correctly, add them manually (Add → RobotModel, Add → TF; set Fixed Frame to <code>base_link</code>) and overwrite <code>rviz/twolink_ik.rviz</code> via File → Save Config As.</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../3.2_twolink/" class="btn btn-neutral float-left" title="3.2 twolink"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../3.4_exercise_threelink_ik/" class="btn btn-neutral float-right" title="3.4 Exercise - threelink_ik">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../3.2_twolink/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../3.4_exercise_threelink_ik/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../javascripts/copy-code.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
