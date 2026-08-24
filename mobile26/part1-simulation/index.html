@@ -1,0 +1,778 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Motion planning bootcamp — from concept, to simulation, to hardware — using the MentorPi M1 mecanum-wheeled robot.">
+      
+      
+        <meta name="author" content="Pranav A. Bhounsule">
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../part2-hardware/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Part 1: Motion Planning in Simulation - Autonomous Mobile Robots Bootcamp</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#part-1-motion-planning-in-simulation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Autonomous Mobile Robots Bootcamp" class="md-header__button md-logo" aria-label="Autonomous Mobile Robots Bootcamp" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.41 4 16 6.41v.18L18.41 9H22v2h-4.41L16 9.41V12h-1a2 2 0 0 1-2-2V7.5H9.86c-.09.37-.24.72-.44 1.05L15.18 19H20a2 2 0 0 1 2 2v1H2v-1a2 2 0 0 1 2-2h6.61l-4.69-8.5a4.006 4.006 0 0 1-3.81-3A4 4 0 0 1 5 2.63c2.13-.55 4.31.73 4.86 2.87H13V3a2 2 0 0 1 2-2h1v2.59L17.59 2H22v2zM6 4.5a2 2 0 0 0-2 2 2 2 0 0 0 2 2 2 2 0 0 0 2-2 2 2 0 0 0-2-2"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Autonomous Mobile Robots Bootcamp
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Part 1: Motion Planning in Simulation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Autonomous Mobile Robots Bootcamp" class="md-nav__button md-logo" aria-label="Autonomous Mobile Robots Bootcamp" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.41 4 16 6.41v.18L18.41 9H22v2h-4.41L16 9.41V12h-1a2 2 0 0 1-2-2V7.5H9.86c-.09.37-.24.72-.44 1.05L15.18 19H20a2 2 0 0 1 2 2v1H2v-1a2 2 0 0 1 2-2h6.61l-4.69-8.5a4.006 4.006 0 0 1-3.81-3A4 4 0 0 1 5 2.63c2.13-.55 4.31.73 4.86 2.87H13V3a2 2 0 0 1 2-2h1v2.59L17.59 2H22v2zM6 4.5a2 2 0 0 0-2 2 2 2 0 0 0 2 2 2 2 0 0 0 2-2 2 2 0 0 0-2-2"/></svg>
+
+    </a>
+    Autonomous Mobile Robots Bootcamp
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 1: Motion Planning in Simulation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 1: Motion Planning in Simulation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#equipment-list-for-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Equipment List for Software
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-the-files-given-to-you" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Understanding the Files Given to You
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Understanding the Files Given to You">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#motion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Motion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lidar-sensor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lidar Sensor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#camera-sensor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Camera Sensor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercises-in-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercises in Simulation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exercises in Simulation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-heuristic-go-to-goal-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A heuristic go-to-goal controller
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-obstacle-avoidance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding obstacle avoidance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-more-obstacles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding more obstacles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#submit-your-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Submit your work
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standardized-testing-with-barn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standardized testing with BARN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#try-a-principled-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Try a principled controller
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part2-hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 2: Motion Planning on Hardware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="part-1-motion-planning-in-simulation">Part 1: Motion Planning in Simulation<a class="headerlink" href="#part-1-motion-planning-in-simulation" title="Permanent link">&para;</a></h1>
+<h2 id="equipment-list-for-software">Equipment List for Software<a class="headerlink" href="#equipment-list-for-software" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Microsoft Visual Studio Code for Python.</strong> Download and install from
+   <a href="https://code.visualstudio.com/download">Microsoft Visual Studio Code</a>. Set up
+   Python using this video and test a simple script the same way it's shown there:
+   <a href="https://youtu.be/9o4gDQvVkLU">youtu.be/9o4gDQvVkLU</a>.</li>
+<li><strong>Install additional Python packages.</strong> Packages can be installed by typing the
+   following in the "terminal" in Visual Studio Code:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span><span class="o">{</span>package_name<span class="o">}</span>
+</code></pre></div>
+<p>Run this once for each package. For <code>{package_name}</code>, install <code>numpy</code> and
+   <code>matplotlib</code>. This minute-long video shows how to install a package:
+   <a href="https://youtu.be/sQPgR1Fz67c">youtu.be/sQPgR1Fz67c</a>.  <br />
+3. <strong>Multi-Joint dynamics with Contact (MuJoCo).</strong> Install the MuJoCo Python package
+   by typing the following in the terminal inside Visual Studio Code:</p>
+<p><div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>mujoco
+</code></pre></div>
+4. <strong>Vibe coding with LLMs.</strong> It's highly recommended that you use LLMs (ChatGPT,
+   Gemini, Claude, etc.) to vibe code. Vibe coding is a style of software creation
+   where you use natural-language prompts to direct an LLM to write, fix, and build
+   code, rather than typing it yourself line by line. You don't need a paid version
+   of any LLM — the free tier is enough.</p>
+<p>General advice: break the problem down into simple tasks, then assign the LLM to
+   program each task one at a time. Run multiple tests after each task to make sure
+   the output does what you expect, and save your working code before you ask the
+   LLM to add more features.</p>
+<h2 id="understanding-the-files-given-to-you">Understanding the Files Given to You<a class="headerlink" href="#understanding-the-files-given-to-you" title="Permanent link">&para;</a></h2>
+<h3 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h3>
+<p>Download the folder
+<a href="https://pab47.github.io/courses/mobile26/autonav.zip"><code>autonav.zip</code></a> and unzip
+it. You'll see the Python file
+<code>template_mecanum.py</code>. It calls into a set of routines in <code>MentorPi_hw</code> (for
+hardware, covered in <a href="../part2-hardware/">Part 2</a>) and <code>MentorPi_sw</code> (for the
+simulator). In this section we work only with simulation:</p>
+<div class="highlight"><pre><span></span><code><span class="n">PLATFORM</span> <span class="o">=</span> <span class="s2">&quot;sw&quot;</span>
+</code></pre></div>
+<h3 id="motion">Motion<a class="headerlink" href="#motion" title="Permanent link">&para;</a></h3>
+<p>Mecanum wheels let a robot drive forward/backward, sideways, and turn — all
+independently — by spinning four rollered wheels at different speeds. Read about
+how they work here:
+<a href="https://docs.sunfounder.com/projects/zeus-car-dev/en/latest/scratch/sc4_move_wheels.html">Moving with Mecanum Wheels (SunFounder)</a>.</p>
+<p>You command the robot's motion with three numbers: forward/backward speed <code>vx</code>,
+sideways speed <code>vy</code>, and turning rate <code>wz</code>. For example:</p>
+<div class="highlight"><pre><span></span><code><span class="n">vx</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">vy</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">wz</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">set_velocity</span><span class="p">(</span><span class="n">vx</span><span class="o">=</span><span class="n">vx</span><span class="p">,</span> <span class="n">wz</span><span class="o">=</span><span class="n">wz</span><span class="p">,</span> <span class="n">vy</span><span class="o">=</span><span class="n">vy</span><span class="p">)</span>
+</code></pre></div>
+<p>Each run also defines a goal position in its scene XML file, which you can read
+with:</p>
+<div class="highlight"><pre><span></span><code><span class="n">goal_x</span><span class="p">,</span> <span class="n">goal_y</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_goal</span><span class="p">()</span>
+</code></pre></div>
+<p>and the robot's own position and heading at any instant come from:</p>
+<div class="highlight"><pre><span></span><code><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">theta</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_pose</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="lidar-sensor">Lidar Sensor<a class="headerlink" href="#lidar-sensor" title="Permanent link">&para;</a></h3>
+<p>A 2D lidar spins a laser beam around the robot and measures the distance to
+whatever it hits at each angle, building a ring of range readings around the
+robot. Read more here:
+<a href="https://www.mathworks.com/help/lidar/ug/lidar-processing-overview.html">LiDAR Processing Overview (MathWorks)</a>.</p>
+<p>Turn the lidar on with:</p>
+<div class="highlight"><pre><span></span><code><span class="n">flag_lidar</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+<p>and read/visualize it with:</p>
+<div class="highlight"><pre><span></span><code><span class="n">points</span> <span class="o">=</span> <span class="n">lidar</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
+<span class="n">lidar</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<p><code>points</code> holds every point the lidar detected on that sweep, given in the
+<strong>robot's own frame</strong> (not the world frame): <code>points.x_data</code> is meters ahead of
+the robot, <code>points.y_data</code> is meters to the left (positive) or right (negative),
+and <code>points.angle_data</code> is the angle to that point in degrees, where 0° is
+straight ahead and positive angles are counterclockwise (to the left). All three
+are lists of the same length — one entry per detected point — so
+<code>points.x_data[i]</code>, <code>points.y_data[i]</code>, <code>points.angle_data[i]</code> together describe
+the <code>i</code>-th detected point, and <code>len(points.x_data)</code> tells you how many points
+were detected. Beams that hit nothing within <code>lidar_range_to_see_in_meters</code> are
+left out, so you won't get a fixed number of points every call — check for an
+empty result before indexing into it.</p>
+<p>Run the simulation and you'll see the lidar view appear. You can tune these
+parameters in the code:</p>
+<div class="highlight"><pre><span></span><code><span class="n">lidar_field_of_view_degrees</span> <span class="o">=</span> <span class="mf">90.0</span>   <span class="c1"># angular span the lidar scans, centered on the robot&#39;s forward direction</span>
+<span class="n">lidar_range_to_see_in_meters</span> <span class="o">=</span> <span class="mf">3.0</span>   <span class="c1"># maximum distance, in meters, the lidar can detect an obstacle</span>
+<span class="n">lidar_num_beams</span> <span class="o">=</span> <span class="mi">180</span>                <span class="c1"># number of individual beams spread across the field of view (angular resolution)</span>
+</code></pre></div>
+<h3 id="camera-sensor">Camera Sensor<a class="headerlink" href="#camera-sensor" title="Permanent link">&para;</a></h3>
+<p>An RGB-D camera captures a normal color (RGB) image plus a depth image, where each
+pixel's value is its distance from the camera instead of its color. Read more here:
+<a href="https://www.geeksforgeeks.org/computer-vision/rgb-d-images-a-comprehensive-overview/">RGB-D Images: A Comprehensive Overview (GeeksforGeeks)</a>.</p>
+<p>Turn the camera on with:</p>
+<div class="highlight"><pre><span></span><code><span class="n">flag_camera</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+<p>and read/visualize it with:</p>
+<div class="highlight"><pre><span></span><code><span class="n">frame</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
+<span class="n">camera</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<p><code>frame</code> holds the RGB and depth images captured together, plus a convenience
+reading:</p>
+<ul>
+<li><code>frame.rgb</code> — a <code>(camera_height, camera_width, 3)</code> array of <code>0-255</code> color
+  values (a normal color image).</li>
+<li><code>frame.depth</code> — a <code>(camera_height, camera_width)</code> array where each pixel is
+  that point's distance from the camera plane, <strong>in meters</strong> (not a 0-255 value).
+  This is depth, not straight-line range from the camera — the two only agree
+  exactly at the center pixel.</li>
+<li><code>frame.center_depth</code> — a single number: the depth, in meters, at the pixel
+  right in the center of the frame. Handy when you just want "how far away is
+  whatever the robot is looking straight at" without indexing into <code>frame.depth</code>
+  yourself.</li>
+</ul>
+<p>Run the simulation and you'll see the camera view — both RGB and depth. You can
+tune these parameters in the code:</p>
+<div class="highlight"><pre><span></span><code><span class="n">camera_width</span> <span class="o">=</span> <span class="mi">320</span>    <span class="c1"># captured frame width, in pixels</span>
+<span class="n">camera_height</span> <span class="o">=</span> <span class="mi">240</span>   <span class="c1"># captured frame height, in pixels</span>
+</code></pre></div>
+<h2 id="exercises-in-simulation">Exercises in Simulation<a class="headerlink" href="#exercises-in-simulation" title="Permanent link">&para;</a></h2>
+<p>The objective is to avoid obstacles while reaching a goal. Obstacle positions come
+from the lidar and camera as distances from the robot in the <strong>local (robot) frame</strong>
+— that is, measured relative to the robot. The goal position is given in the
+<strong>world frame</strong> — that is, measured relative to the world.</p>
+<h3 id="a-heuristic-go-to-goal-controller">A heuristic go-to-goal controller<a class="headerlink" href="#a-heuristic-go-to-goal-controller" title="Permanent link">&para;</a></h3>
+<p>"Heuristic" means a controller built from practical experience or intuition rather
+than a formal optimization. One control idea is given below — feel free to try your
+own instead.</p>
+<p>You have two natural choices of control inputs: <code>vx, vy</code> (straight + sideways
+motion) or <code>vx, wz</code> (straight motion + turning). Start with <code>vx, vy</code> — it's easier
+to reason about — and extend to <code>vx, wz</code> afterward if you'd like.</p>
+<p>A simple way to steer toward the goal is to compute the direction from the robot's
+current position <span class="arithmatex">\((x, y)\)</span> to the goal <span class="arithmatex">\((x_g, y_g)\)</span>:</p>
+<div class="arithmatex">\[
+\phi_g = \operatorname{atan2}(y_g - y,\; x_g - x)
+\]</div>
+<p>(subtract the robot's heading <span class="arithmatex">\(\theta\)</span> if you want this angle expressed in the
+robot's own body frame instead of the world frame). Then set the ratio of sideways
+to forward speed from that angle:</p>
+<div class="arithmatex">\[
+\frac{v_y}{v_x} = \tan(\phi_g)
+\]</div>
+<p>Set <code>vx</code> to a small value, e.g. <code>vx = 0.1</code>, and compute <code>vy = vx * tan(phi_g)</code>. Once
+this works, ramp up <code>vx</code> to get the robot moving faster.</p>
+<h3 id="adding-obstacle-avoidance">Adding obstacle avoidance<a class="headerlink" href="#adding-obstacle-avoidance" title="Permanent link">&para;</a></h3>
+<p>Extend the same idea to avoid obstacles. Compute the direction from the robot's
+current position to the nearest detected obstacle, <span class="arithmatex">\(\phi_d\)</span>, and steer using:</p>
+<div class="arithmatex">\[
+\frac{v_y}{v_x} = \tan(\phi_g + \delta)
+\]</div>
+<p>where <span class="arithmatex">\(\delta\)</span> is an offset angle you choose from roughly <span class="arithmatex">\(-90°\)</span> to <span class="arithmatex">\(90°\)</span>
+(but not <span class="arithmatex">\(0°\)</span>), with its sign chosen based on which side the obstacle is on. This
+biases the robot's heading away from the obstacle while it continues generally
+toward the goal.</p>
+<p>Suggested order of attack:</p>
+<ol>
+<li>Start with the <strong>lidar</strong> sensor and command <code>vx, vy</code> as shown above.</li>
+<li>Once that works, swap the lidar sensor for the <strong>camera</strong>.</li>
+<li>Try the <code>vx, wz</code> control combination as well.</li>
+</ol>
+<h3 id="adding-more-obstacles">Adding more obstacles<a class="headerlink" href="#adding-more-obstacles" title="Permanent link">&para;</a></h3>
+<p>Once your controller works, add more obstacles by modifying <code>env_example.xml</code>.</p>
+<h3 id="submit-your-work">Submit your work<a class="headerlink" href="#submit-your-work" title="Permanent link">&para;</a></h3>
+<p>At this point, zip your files and email them to
+<a href="mailto:pranav@uic.edu">pranav@uic.edu</a>. We'll meet next to talk about standardized
+testing, described below.</p>
+<h3 id="standardized-testing-with-barn">Standardized testing with BARN<a class="headerlink" href="#standardized-testing-with-barn" title="Permanent link">&para;</a></h3>
+<p>Once you're ready, test your controller on standardized environments from
+<a href="https://cs.gmu.edu/~xiao/Research/BARN/BARN.html">BARN — Benchmark Autonomous Robot Navigation</a>.
+BARN is a public benchmark of 300 procedurally generated, simulated obstacle
+courses spanning a range of difficulty (from sparse obstacles to tightly packed,
+maze-like clutter), used to compare ground-robot navigation approaches on a common,
+standardized set of environments.</p>
+<p>To generate an environment, set the <code>BARN_num</code> variable in <code>barn_to_mujoco.py</code> and
+run the script. This generates the environment inside the <code>BARN</code> folder. Copy the
+path to the resulting <code>scene_&lt;no&gt;.xml</code> into your Python script and run it, where
+<code>&lt;no&gt;</code> is the BARN environment number.</p>
+<h3 id="try-a-principled-controller">Try a principled controller<a class="headerlink" href="#try-a-principled-controller" title="Permanent link">&para;</a></h3>
+<p>After you're comfortable with the heuristic controller on simple environments and
+on BARN, pick one of these more principled controllers to implement:</p>
+<ul>
+<li>Dynamic Window Approach (DWA)</li>
+<li>Artificial Potential Field</li>
+<li>Timed Elastic Band</li>
+<li>Model Predictive Control</li>
+</ul>
+<p>Program it against the simple environment first, then against BARN, and compare its
+performance to your heuristic controller.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Pranav A. Bhounsule &middot; pranav@uic.edu
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.top", "navigation.tracking", "toc.integrate", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
