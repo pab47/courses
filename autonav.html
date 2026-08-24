@@ -20,6 +20,8 @@
     --line: rgba(27, 55, 99, 0.16);
     --line-strong: rgba(27, 55, 99, 0.32);
     --shadow: rgba(27, 55, 99, 0.10);
+    --obstacle: #d1451f;
+    --obstacle-line: #8f2e13;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -32,6 +34,8 @@
       --line: rgba(234, 241, 255, 0.14);
       --line-strong: rgba(234, 241, 255, 0.30);
       --shadow: rgba(0, 0, 0, 0.35);
+      --obstacle: #ff7a45;
+      --obstacle-line: #c94f1f;
     }
   }
   :root[data-theme="dark"] {
@@ -44,6 +48,8 @@
     --line: rgba(234, 241, 255, 0.14);
     --line-strong: rgba(234, 241, 255, 0.30);
     --shadow: rgba(0, 0, 0, 0.35);
+    --obstacle: #ff7a45;
+    --obstacle-line: #c94f1f;
   }
 
   /* ---------- Reset ---------- */
@@ -382,26 +388,26 @@
         <svg id="hero-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
           <rect x="20" y="20" width="360" height="360" rx="6" fill="none" stroke="var(--line-strong)"></rect>
 
-          <g fill="var(--bg-raised)" stroke="var(--line-strong)">
+          <g fill="var(--obstacle)" stroke="var(--obstacle-line)">
             <g transform="translate(110,290) rotate(-8)">
               <rect x="-27" y="-19" width="54" height="38" rx="2"></rect>
-              <path d="M-27,0 H27 M0,-19 V19" stroke="var(--line-strong)" stroke-width="1"></path>
+              <path d="M-27,0 H27 M0,-19 V19" stroke="var(--obstacle-line)" stroke-width="1"></path>
             </g>
             <g transform="translate(250,260) rotate(10)">
               <rect x="-21" y="-26" width="42" height="52" rx="2"></rect>
-              <path d="M-21,0 H21 M0,-26 V26" stroke="var(--line-strong)" stroke-width="1"></path>
+              <path d="M-21,0 H21 M0,-26 V26" stroke="var(--obstacle-line)" stroke-width="1"></path>
             </g>
             <g transform="translate(150,180) rotate(5)">
               <rect x="-23" y="-15" width="46" height="30" rx="2"></rect>
-              <path d="M-23,0 H23 M0,-15 V15" stroke="var(--line-strong)" stroke-width="1"></path>
+              <path d="M-23,0 H23 M0,-15 V15" stroke="var(--obstacle-line)" stroke-width="1"></path>
             </g>
             <g transform="translate(290,170) rotate(-12)">
               <rect x="-20" y="-24" width="40" height="48" rx="2"></rect>
-              <path d="M-20,0 H20 M0,-24 V24" stroke="var(--line-strong)" stroke-width="1"></path>
+              <path d="M-20,0 H20 M0,-24 V24" stroke="var(--obstacle-line)" stroke-width="1"></path>
             </g>
             <g transform="translate(200,100) rotate(6)">
               <rect x="-26" y="-17" width="52" height="34" rx="2"></rect>
-              <path d="M-26,0 H26 M0,-17 V17" stroke="var(--line-strong)" stroke-width="1"></path>
+              <path d="M-26,0 H26 M0,-17 V17" stroke="var(--obstacle-line)" stroke-width="1"></path>
             </g>
           </g>
 
