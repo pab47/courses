@@ -53,6 +53,8 @@
       
     
     
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -532,11 +534,13 @@
 </ol>
 <div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span><span class="o">{</span>package_name<span class="o">}</span>
 </code></pre></div>
-<p>Run this once for each package. For <code>{package_name}</code>, install <code>numpy</code> and
-   <code>matplotlib</code>. This minute-long video shows how to install a package:
-   <a href="https://youtu.be/sQPgR1Fz67c">youtu.be/sQPgR1Fz67c</a>.  <br />
-3. <strong>Multi-Joint dynamics with Contact (MuJoCo).</strong> Install the MuJoCo Python package
-   by typing the following in the terminal inside Visual Studio Code:</p>
+<p>Run this command three times with <code>{package_name}</code> replaced with <code>numpy</code>,
+   <code>matplotlib</code>, and <code>opencv-python</code>. This minute-long video shows how to install
+   a package: <a href="https://youtu.be/sQPgR1Fz67c">youtu.be/sQPgR1Fz67c</a>.</p>
+<ol>
+<li><strong>Multi-Joint dynamics with Contact (MuJoCo).</strong> Install the MuJoCo Python package
+   by typing the following in the terminal inside Visual Studio Code:</li>
+</ol>
 <p><div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>mujoco
 </code></pre></div>
 4. <strong>Vibe coding with LLMs.</strong> It's highly recommended that you use LLMs (ChatGPT,
@@ -690,10 +694,14 @@ BARN is a public benchmark of 300 procedurally generated, simulated obstacle
 courses spanning a range of difficulty (from sparse obstacles to tightly packed,
 maze-like clutter), used to compare ground-robot navigation approaches on a common,
 standardized set of environments.</p>
-<p>To generate an environment, set the <code>BARN_num</code> variable in <code>barn_to_mujoco.py</code> and
-run the script. This generates the environment inside the <code>BARN</code> folder. Copy the
-path to the resulting <code>scene_&lt;no&gt;.xml</code> into your Python script and run it, where
-<code>&lt;no&gt;</code> is the BARN environment number.</p>
+<p>To generate an environment proceed as follows. First, download
+<a href="https://pab47.github.io/courses/mobile26/BARN_dataset.zip"><code>BARN_dataset.zip</code></a>.
+Then unzip it and note its location on your system (e.g., <code>/Users/&lt;name&gt;/Downloads/</code>)
+and put this folder name in the appropriate place in <code>barn_to_mujoco.py</code>.</p>
+<p>Finally, set the <code>BARN_num</code> variable in <code>barn_to_mujoco.py</code> and run the script.
+This generates the environment inside the <code>BARN</code> folder. Copy the path to the
+resulting <code>scene_&lt;no&gt;.xml</code> into your Python script and run it, where <code>&lt;no&gt;</code> is
+the BARN environment number.</p>
 <h3 id="try-a-principled-controller">Try a principled controller<a class="headerlink" href="#try-a-principled-controller" title="Permanent link">&para;</a></h3>
 <p>After you're comfortable with the heuristic controller on simple environments and
 on BARN, pick one of these more principled controllers to implement:</p>

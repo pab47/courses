@@ -1,0 +1,13 @@
+/* Top app bar / header — light purple, rgb(203, 195, 227).
+   Material sets --md-primary-fg-color via [data-md-color-primary] on <body>,
+   which is more specific than a plain :root rule, so we match that selector
+   too (same specificity, later in source order) to actually win the cascade. */
+:root,
+[data-md-color-primary] {
+  --md-primary-fg-color: #cbc3e3;
+  --md-primary-fg-color--light: #cbc3e3;
+  --md-primary-fg-color--dark: #cbc3e3;
+  /* Dark text/icons for contrast against the light purple bar */
+  --md-primary-bg-color: #1b1b2e;
+  --md-primary-bg-color--light: rgba(27, 27, 46, 0.7);
+}
